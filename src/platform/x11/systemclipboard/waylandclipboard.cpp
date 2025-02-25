@@ -249,7 +249,9 @@ public:
 protected:
     void zwlr_data_control_offer_v1_offer(const QString &mime_type) override
     {
-        m_receivedFormats << mime_type;
+        if (!m_receivedFormats.contains(mime_type)) {
+            m_receivedFormats << mime_type;
+        }
     }
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
@@ -260,6 +262,7 @@ protected:
 
 private:
     QStringList m_receivedFormats;
+    mutable QHash<QString, QVariant> m_data;
 };
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
@@ -269,6 +272,10 @@ QVariant DataControlOffer::retrieveData(const QString &mimeType, QVariant::Type 
 #endif
 {
     Q_UNUSED(type);
+
+    auto it = m_data.constFind(mimeType);
+    if (it != m_data.constEnd())
+        return *it;
 
     QString mime;
     if (!m_receivedFormats.contains(mimeType)) {
@@ -317,18 +324,34 @@ QVariant DataControlOffer::retrieveData(const QString &mimeType, QVariant::Type 
     wl_display_flush(display);
 
     ReceiveThread thread(pipeFds[0]);
+    QEventLoop loop;
+    connect(&thread, &QThread::finished, &loop, &QEventLoop::quit);
     thread.start();
-    while (thread.isRunning())
-        QCoreApplication::processEvents();
+    if (thread.isRunning())
+        loop.exec();
+
     const auto data = thread.data();
 
     if (!data.isEmpty() && mimeType == applicationQtXImageLiteral()) {
         QImage img = QImage::fromData(data, mime.mid(mime.indexOf(QLatin1Char('/')) + 1).toLatin1().toUpper().data());
         if (!img.isNull()) {
+            m_data.insert(mimeType, img);
             return img;
         }
+    } else if (data.size() > 1 && mimeType == u"text/uri-list") {
+        const auto urls = data.split('\n');
+        QVariantList list;
+        list.reserve(urls.size());
+        for (const QByteArray &s : urls) {
+            QUrl url(QUrl::fromEncoded(s.trimmed()));
+            if (url.isValid()) {
+                list.append(url);
+            }
+        }
+        m_data.insert(mimeType, list);
+        return list;
     }
-
+    m_data.insert(mimeType, data);
     return data;
 }
 
@@ -590,30 +613,17 @@ WaylandClipboard::WaylandClipboard(QObject *parent)
     });
 
     m_manager->instantiate();
+    m_deviceRequestedTimer.start();
 }
 
 WaylandClipboard *WaylandClipboard::createInstance()
 {
-    qInfo() << "Using Wayland clipboard access";
-    auto clipboard = new WaylandClipboard(qApp);
-
-    QElapsedTimer timer;
-    timer.start();
-    while ( !clipboard->isActive() && timer.elapsed() < 5000 ) {
-        QCoreApplication::processEvents();
-    }
-    if ( timer.elapsed() > 100 ) {
-        qWarning() << "Activating Wayland clipboard took" << timer.elapsed() << "ms";
-    }
-    if ( !clipboard->isActive() ) {
-        qCritical() << "Failed to activate Wayland clipboard";
-    }
-    return clipboard;
+    return new WaylandClipboard(qApp);
 }
 
 void WaylandClipboard::setMimeData(QMimeData *mime, QClipboard::Mode mode)
 {
-    if (!m_device) {
+    if (!waitForDevice(1000)) {
         return;
     }
     std::unique_ptr<DataControlSource> source(new DataControlSource(m_manager->create_data_source(), mime));
@@ -624,23 +634,9 @@ void WaylandClipboard::setMimeData(QMimeData *mime, QClipboard::Mode mode)
     }
 }
 
-void WaylandClipboard::clear(QClipboard::Mode mode)
-{
-    if (!m_device) {
-        return;
-    }
-    if (mode == QClipboard::Clipboard) {
-        m_device->set_selection(nullptr);
-    } else if (mode == QClipboard::Selection) {
-        if (zwlr_data_control_device_v1_get_version(m_device->object()) >= ZWLR_DATA_CONTROL_DEVICE_V1_SET_PRIMARY_SELECTION_SINCE_VERSION) {
-            m_device->set_primary_selection(nullptr);
-        }
-    }
-}
-
 const QMimeData *WaylandClipboard::mimeData(QClipboard::Mode mode) const
 {
-    if (!m_device) {
+    if (!waitForDevice(1000)) {
         return nullptr;
     }
 
@@ -659,10 +655,31 @@ const QMimeData *WaylandClipboard::mimeData(QClipboard::Mode mode) const
     return nullptr;
 }
 
-bool WaylandClipboard::isSelectionSupported() const
+bool WaylandClipboard::waitForDevice(int timeoutMs) const
 {
-    return m_device && zwlr_data_control_device_v1_get_version(m_device->object())
-            >= ZWLR_DATA_CONTROL_DEVICE_V1_SET_PRIMARY_SELECTION_SINCE_VERSION;
+    if (m_device)
+        return true;
+
+    if (m_deviceRequestedTimer.elapsed() > timeoutMs)
+        return false;
+
+    qWarning() << "Waiting for Wayland clipboard for"
+        << timeoutMs - m_deviceRequestedTimer.elapsed() << "ms";
+
+    while (!m_device && m_deviceRequestedTimer.elapsed() < timeoutMs) {
+        QCoreApplication::processEvents();
+    }
+
+    if (m_device) {
+        if (m_deviceRequestedTimer.elapsed() > 200) {
+            qWarning() << "Activating Wayland clipboard took"
+                << m_deviceRequestedTimer.elapsed() << "ms";
+        }
+        return true;
+    }
+
+    qCritical() << "Failed to activate Wayland clipboard";
+    return false;
 }
 
 WaylandClipboard *WaylandClipboard::instance()

@@ -32,12 +32,25 @@ void DummyClipboard::startMonitoring(const QStringList &)
 QVariantMap DummyClipboard::data(ClipboardMode mode, const QStringList &formats) const
 {
     const QMimeData *data = mimeData(mode);
-    return data ? cloneData(*data, formats) : QVariantMap();
+    if (data == nullptr)
+        return {};
+
+    const bool isDataSecret = isHidden(*data);
+    QVariantMap dataMap = cloneData(data, formats, clipboardSequenceNumber(mode));
+    if (isDataSecret)
+        dataMap[mimeSecret] = QByteArrayLiteral("1");
+
+    return dataMap;
 }
 
 void DummyClipboard::setData(ClipboardMode mode, const QVariantMap &dataMap)
 {
     QGuiApplication::clipboard()->setMimeData( createMimeData(dataMap), modeToQClipboardMode(mode) );
+}
+
+void DummyClipboard::setRawData(ClipboardMode mode, QMimeData *mimeData)
+{
+    QGuiApplication::clipboard()->setMimeData( mimeData, modeToQClipboardMode(mode) );
 }
 
 const QMimeData *DummyClipboard::rawMimeData(ClipboardMode mode) const
@@ -54,11 +67,6 @@ const QMimeData *DummyClipboard::mimeData(ClipboardMode mode) const
 
     if (!data) {
         log( QStringLiteral("Null data in %1").arg(modeText), LogError );
-        return nullptr;
-    }
-
-    if (isHidden(*data)) {
-        log( QStringLiteral("Hiding secret %1 data").arg(modeText) );
         return nullptr;
     }
 

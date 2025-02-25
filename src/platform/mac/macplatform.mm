@@ -169,11 +169,6 @@ QApplication *MacPlatform::createServerApplication(int &argc, char **argv)
     return app;
 }
 
-QGuiApplication *MacPlatform::createMonitorApplication(int &argc, char **argv)
-{
-    return new Activity<ClipboardApplication>(argc, argv, "CopyQ clipboard monitor");
-}
-
 QGuiApplication *MacPlatform::createClipboardProviderApplication(int &argc, char **argv)
 {
     return new Activity<ClipboardApplication>(argc, argv, "CopyQ clipboard provider");
@@ -208,19 +203,13 @@ bool MacPlatform::findPluginDir(QDir *pluginsDir)
 {
     pluginsDir->setPath( qApp->applicationDirPath() );
     if (pluginsDir->dirName() != "MacOS") {
-        if ( pluginsDir->cd("plugins")) {
-            COPYQ_LOG("Found plugins in build tree");
-            return true;
-        }
-        return false;
+        return pluginsDir->cd("plugins");
     }
 
     if ( pluginsDir->cdUp() // Contents
             && pluginsDir->cd("PlugIns")
             && pluginsDir->cd("copyq"))
     {
-        // OK, found it in the bundle
-        COPYQ_LOG("Found plugins in application bundle");
         return true;
     }
 
@@ -229,8 +218,8 @@ bool MacPlatform::findPluginDir(QDir *pluginsDir)
     if ( pluginsDir->cdUp() // Contents
             && pluginsDir->cdUp() // copyq.app
             && pluginsDir->cdUp() // repo root
-            && pluginsDir->cd("plugins")) {
-        COPYQ_LOG("Found plugins in build tree");
+            && pluginsDir->cd("plugins"))
+    {
         return true;
     }
 

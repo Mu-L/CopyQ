@@ -7,6 +7,7 @@
 #include <QStringList>
 #include <QVariantMap>
 
+class ClipboardDataGuard;
 class QByteArray;
 class QDropEvent;
 class QFont;
@@ -20,10 +21,11 @@ bool isMainThread();
 QByteArray makeClipboardOwnerData();
 
 /** Clone data for given formats (text or HTML will be UTF8 encoded). */
-QVariantMap cloneData(const QMimeData &data, QStringList formats, bool *abortCloning = nullptr);
+QVariantMap cloneData(ClipboardDataGuard &data, const QStringList &formats);
+QVariantMap cloneData(const QMimeData *data, const QStringList &formats, const long int *clipboardSequenceNumber = nullptr);
 
 /** Clone all data as is. */
-QVariantMap cloneData(const QMimeData &data);
+QVariantMap cloneData(const QMimeData *data);
 
 QString cloneText(const QMimeData &data);
 
@@ -77,6 +79,11 @@ bool isClipboardData(const QVariantMap &data);
  * Handle key for Vi mode.
  */
 bool handleViKey(QKeyEvent *event, QObject *eventReceiver);
+
+/**
+ * Handle key for Emacs mode.
+ */
+bool handleEmacsKey(QKeyEvent *event, QObject *eventReceiver);
 
 /**
  * Return true only if tabs can accept the drag'n'drop event.

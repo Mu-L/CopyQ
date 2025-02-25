@@ -324,14 +324,8 @@ bool ClipboardBrowser::isFiltered(int row) const
         return true;
 
     const QModelIndex ind = m.index(row);
-    return m_filterRow != row
-            && m_sharedData->itemFactory
+    return m_sharedData->itemFactory
             && !m_sharedData->itemFactory->matches(ind, *filter);
-}
-
-QVariantMap ClipboardBrowser::itemData(const QModelIndex &index) const
-{
-    return index.data(contentType::data).toMap();
 }
 
 bool ClipboardBrowser::hideFiltered(int row)
@@ -425,18 +419,18 @@ void ClipboardBrowser::setEditorWidget(ItemEditorWidget *editor, bool changeClip
     setHorizontalScrollBarPolicy(scrollbarPolicy);
 }
 
-void ClipboardBrowser::editItem(const QModelIndex &index, bool editNotes, bool changeClipboard)
+void ClipboardBrowser::editItem(
+    const QModelIndex &index, const QString &format, bool changeClipboard)
 {
     if (!index.isValid())
         return;
 
-    ItemEditorWidget *editor = d.createCustomEditor(this, index, editNotes);
+    ItemEditorWidget *editor = d.createCustomEditor(this, index, format);
     if (editor != nullptr && editor->isValid() ) {
         setEditorWidget(editor, changeClipboard);
     } else {
         delete editor;
-        if (!editNotes)
-            openEditor(index);
+        openEditor(index, format);
     }
 }
 
@@ -480,9 +474,6 @@ void ClipboardBrowser::connectModelAndDelegate()
 
     // delegate for rendering and editing items
     setItemDelegate(&d);
-
-    connect( &m, &QAbstractItemModel::rowsAboutToBeRemoved,
-             this, &ClipboardBrowser::itemsAboutToBeRemoved );
 
     // Delegate receives model signals first to update internal item list.
     connect( &m, &QAbstractItemModel::rowsInserted,
@@ -853,6 +844,10 @@ void ClipboardBrowser::onRowsInserted(const QModelIndex &, int first, int last)
                 || !isVisible()
                 || !isActiveWindow()));
 
+    // Avoid selecting multiple items if not requested.
+    if (!m_selectNewItems)
+        last = first;
+
     for (int row = first; row <= last; ++row) {
         if ( !hideFiltered(row) ) {
             const auto newIndex = index(row);
@@ -1023,7 +1018,7 @@ void ClipboardBrowser::dropEvent(QDropEvent *event)
     if (event->dropAction() == Qt::MoveAction && event->source() == this)
         return; // handled in mouseMoveEvent()
 
-    const QVariantMap data = cloneData( *event->mimeData() );
+    const QVariantMap data = cloneData( event->mimeData() );
     addAndSelect(data, m_dragTargetRow);
     m_dragTargetRow = -1;
 }
@@ -1213,11 +1208,12 @@ void ClipboardBrowser::doItemsLayout()
 bool ClipboardBrowser::openEditor()
 {
     const QModelIndexList selected = selectionModel()->selectedRows();
-    return (selected.size() == 1) ? openEditor( selected.first() )
-                                  : openEditor( selectedText().toUtf8() );
+    return (selected.size() == 1) ? openEditor( selected.first(), mimeText )
+                                  : openEditor( {}, mimeText, selectedText().toUtf8() );
 }
 
-bool ClipboardBrowser::openEditor(const QByteArray &textData, bool changeClipboard)
+bool ClipboardBrowser::openEditor(
+    const QModelIndex &index, const QString &format, const QByteArray &content, bool changeClipboard)
 {
     if ( !isLoaded() )
         return false;
@@ -1225,7 +1221,8 @@ bool ClipboardBrowser::openEditor(const QByteArray &textData, bool changeClipboa
     if ( m_sharedData->editor.isEmpty() )
         return false;
 
-    QObject *editor = new ItemEditor(textData, mimeText, m_sharedData->editor, this);
+    auto editor = new ItemEditor(content, format, m_sharedData->editor, this);
+    editor->setIndex(index);
     if ( !startEditor(editor) )
         return false;
 
@@ -1237,7 +1234,7 @@ bool ClipboardBrowser::openEditor(const QByteArray &textData, bool changeClipboa
     return true;
 }
 
-bool ClipboardBrowser::openEditor(const QModelIndex &index)
+bool ClipboardBrowser::openEditor(const QModelIndex &index, const QString &format)
 {
     if ( !isLoaded() )
         return false;
@@ -1253,7 +1250,7 @@ bool ClipboardBrowser::openEditor(const QModelIndex &index)
     if ( !m_sharedData->editor.trimmed().isEmpty() ) {
         const QString text = getTextData(data);
         if ( !text.isNull() ) {
-            auto itemEditor = new ItemEditor( text.toUtf8(), mimeText, m_sharedData->editor, this );
+            auto itemEditor = new ItemEditor( text.toUtf8(), format, m_sharedData->editor, this );
             itemEditor->setIndex(index);
             if ( startEditor(itemEditor) )
                 return true;
@@ -1272,7 +1269,7 @@ void ClipboardBrowser::editNotes()
     scrollTo(ind, PositionAtTop);
     emit requestShow(this);
 
-    editItem(ind, true);
+    editItem(ind, mimeItemNotes);
 }
 
 void ClipboardBrowser::itemModified(const QByteArray &bytes, const QString &mime, const QModelIndex &index)
@@ -1305,36 +1302,43 @@ void ClipboardBrowser::filterItems(const ItemFilterPtr &filter)
 
     d.setItemFilter(filter);
 
-    // If search string is a number, highlight item in that row.
-    bool filterByRowNumber = !m_sharedData->numberSearch;
-    if (filterByRowNumber) {
-        m_filterRow = newSearch.toInt(&filterByRowNumber);
-        if (m_filterRow > 0 && m_sharedData->rowIndexFromOne)
-            --m_filterRow;
-    }
-    if (!filterByRowNumber)
-        m_filterRow = -1;
-
     int row = 0;
+    for ( ; row < length() && hideFiltered(row); ++row ) {}
+
+    const int firstVisibleRow = row;
+
+    for ( ; row < length(); ++row )
+        hideFiltered(row);
 
     if ( !filter || filter->matchesAll() ) {
-        for ( ; row < length(); ++row )
-            hideFiltered(row);
-
         scrollTo(currentIndex(), PositionAtCenter);
     } else {
-        for ( ; row < length() && hideFiltered(row); ++row ) {}
-
-        setCurrent(row);
-
-        for ( ; row < length(); ++row )
-            hideFiltered(row);
-
-        if ( filterByRowNumber && m_filterRow >= 0 && m_filterRow < m.rowCount() )
-            setCurrent(m_filterRow);
+        const int currentRow = currentRowFromSearch(newSearch, firstVisibleRow);
+        setCurrent(currentRow);
     }
 
     d.updateAllRows();
+}
+
+int ClipboardBrowser::currentRowFromSearch(const QString &search, int fallback)
+{
+    if (m_sharedData->numberSearch)
+        return fallback;
+
+    // If search string is a number, highlight item in that row.
+    bool ok;
+    int maybeRow = search.toInt(&ok);
+    if (!ok)
+        return fallback;
+
+    if (maybeRow > 0 && m_sharedData->rowIndexFromOne)
+        --maybeRow;
+
+    if (maybeRow < 0 || maybeRow >= m.rowCount())
+        return fallback;
+
+    setRowHidden(maybeRow, false);
+    return maybeRow;
 }
 
 void ClipboardBrowser::moveToClipboard(const QModelIndex &ind)
@@ -1357,7 +1361,7 @@ void ClipboardBrowser::moveToClipboard(const QModelIndexList &indexes)
     emit changeClipboard(data);
 }
 
-void ClipboardBrowser::editNew(const QString &text, bool changeClipboard)
+void ClipboardBrowser::editNew(const QString &format, const QByteArray &content, bool changeClipboard)
 {
     if ( !isLoaded() )
         return;
@@ -1366,11 +1370,11 @@ void ClipboardBrowser::editNew(const QString &text, bool changeClipboard)
     filterItems(nullptr);
 
     m_selectNewItems = true;
-    const bool added = add(text);
+    const bool added = add( createDataMap(format, content) );
     m_selectNewItems = false;
 
     if (added)
-        editItem(currentIndex(), false, changeClipboard);
+        editItem(currentIndex(), format, changeClipboard);
 }
 
 void ClipboardBrowser::keyPressEvent(QKeyEvent *event)
@@ -1380,10 +1384,14 @@ void ClipboardBrowser::keyPressEvent(QKeyEvent *event)
         return;
 
     // translate keys for vi mode
-    if (m_sharedData->viMode && handleViKey(event, this)) {
+    if (m_sharedData->navigationStyle == NavigationStyle::Vi && handleViKey(event, this)) {
         d.updateIfNeeded();
         return;
     }
+
+    // translate keys for emacs mode
+    if (m_sharedData->navigationStyle == NavigationStyle::Emacs && handleEmacsKey(event, this))
+        return;
 
     const Qt::KeyboardModifiers mods = event->modifiers();
 
@@ -1391,6 +1399,16 @@ void ClipboardBrowser::keyPressEvent(QKeyEvent *event)
         return; // Handled by filter completion popup.
 
     const int key = event->key();
+
+    // WORKAROUND: Avoid triggering search with Ctrl+Space toggle selection action.
+    if (mods.testFlag(Qt::ControlModifier) && key == Qt::Key_Space) {
+        const QModelIndex current = currentIndex();
+        if (!edit(current, AnyKeyPressed, event)) {
+            selectionModel()->select(current, selectionCommand(current, event));
+            event->accept();
+            return;
+        }
+    }
 
     // This fixes few issues with default navigation and item selections.
     switch (key) {
@@ -1527,12 +1545,12 @@ void ClipboardBrowser::setCurrent(int row, bool keepSelection, bool setCurrentOn
 void ClipboardBrowser::editSelected()
 {
     if ( selectedIndexes().size() > 1 ) {
-        editNew( selectedText() );
+        editNew( mimeText, selectedText().toUtf8() );
     } else {
         QModelIndex ind = currentIndex();
         if ( ind.isValid() ) {
             emit requestShow(this);
-            editItem(ind);
+            editItem(ind, mimeText);
         }
     }
 }
@@ -1592,13 +1610,8 @@ bool ClipboardBrowser::add(const QString &txt, int row)
 
 bool ClipboardBrowser::add(const QVariantMap &data, int row)
 {
-    if ( !isLoaded() ) {
-        loadItems();
-        if ( !isLoaded() ) {
-            log( QString("Cannot add new items. Tab %1 is not loaded.").arg(m_tabName), LogWarning );
-            return false;
-        }
-    }
+    if ( !isLoaded() )
+        return false;
 
     const int newRow = row < 0 ? m.rowCount() : qMin(row, m.rowCount());
 
@@ -1606,7 +1619,7 @@ bool ClipboardBrowser::add(const QVariantMap &data, int row)
         const QByteArray bytes = data[mimeItems].toByteArray();
         QDataStream stream(bytes);
 
-        QList<QVariantMap> dataList;
+        QVector<QVariantMap> dataList;
         while ( !stream.atEnd() ) {
             QVariantMap dataMap;
             stream >> dataMap;
@@ -1624,6 +1637,37 @@ bool ClipboardBrowser::add(const QVariantMap &data, int row)
         m.insertItem(data, newRow);
     }
 
+    return true;
+}
+
+bool ClipboardBrowser::addReversed(const QVector<QVariantMap> &dataList, int row)
+{
+    if ( !isLoaded() )
+        return false;
+
+    const int newRow = row < 0 ? m.rowCount() : qMin(row, m.rowCount());
+
+    QVector<QVariantMap> items;
+    items.reserve(dataList.size());
+    for (auto it = std::rbegin(dataList); it != std::rend(dataList); ++it) {
+        if ( it->contains(mimeItems) ) {
+            const QByteArray bytes = (*it)[mimeItems].toByteArray();
+            QDataStream stream(bytes);
+
+            while ( !stream.atEnd() ) {
+                QVariantMap dataMap;
+                stream >> dataMap;
+                items.append(dataMap);
+            }
+        } else {
+            items.append(*it);
+        }
+    }
+
+    if ( !allocateSpaceForNewItems(items.size()) )
+        return false;
+
+    m.insertItems(items, newRow);
     return true;
 }
 
@@ -1676,6 +1720,12 @@ void ClipboardBrowser::addUnique(const QVariantMap &data, ClipboardMode mode)
     COPYQ_LOG("New item: Adding");
 
     add(data);
+}
+
+void ClipboardBrowser::setItemsData(const QMap<QPersistentModelIndex, QVariantMap> &itemsData)
+{
+    if ( isLoaded() )
+        m.setItemsData(itemsData);
 }
 
 bool ClipboardBrowser::loadItems()
@@ -1797,9 +1847,9 @@ void ClipboardBrowser::setStoreItems(bool store)
         ::removeItems(m_tabName);
 }
 
-void ClipboardBrowser::editRow(int row)
+void ClipboardBrowser::editRow(int row, const QString &format)
 {
-    editItem( index(row) );
+    editItem( index(row), format );
 }
 
 void ClipboardBrowser::move(int key)
@@ -1826,7 +1876,7 @@ QWidget *ClipboardBrowser::currentItemPreview(QWidget *parent)
         return nullptr;
 
     const QModelIndex index = currentIndex();
-    const auto data = itemData(index);
+    const auto data = index.data(contentType::data).toMap();
     return d.createPreview(data, parent);
 }
 

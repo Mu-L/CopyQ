@@ -17,8 +17,6 @@
 #include <QVariant>
 #include <QVector>
 
-#include <unordered_map>
-
 class ClipboardBrowser;
 class KeyClicker;
 class MainWindow;
@@ -127,7 +125,6 @@ public slots:
     void action(const QVariantMap &arg1, const Command &arg2);
 
     void runInternalAction(const QVariantMap &data, const QString &command);
-    QByteArray tryGetCommandOutput(const QString &command);
 
     void showMessage(const QString &title,
             const QString &msg,
@@ -142,8 +139,8 @@ public slots:
     QString browserRemoveRows(const QString &tabName, QVector<int> rows);
     void browserMoveSelected(int targetRow);
 
-    void browserEditRow(const QString &tabName, int arg1);
-    void browserEditNew(const QString &tabName, const QString &arg1, bool changeClipboard);
+    void browserEditRow(const QString &tabName, int arg1, const QString &format);
+    void browserEditNew(const QString &tabName, const QString &format, const QByteArray &content, bool changeClipboard);
 
     QStringList tabs();
     bool toggleVisible();
@@ -166,7 +163,8 @@ public slots:
     QVariant toggleConfig(const QString &optionName);
 
     int browserLength(const QString &tabName);
-    bool browserOpenEditor(const QString &tabName, const QByteArray &arg1, bool changeClipboard);
+    bool browserOpenEditor(
+        const QString &tabName, int row, const QString &format, const QByteArray &content, bool changeClipboard);
 
     QString browserInsert(const QString &tabName, int row, const VariantMapList &items);
     QString browserChange(const QString &tabName, int row, const VariantMapList &items);
@@ -182,6 +180,7 @@ public slots:
     bool selectItems(const QString &tabName, const QVector<int> &rows);
 
     QVector<int> selectedItems();
+    QString selectedTab();
 
     QVariantMap selectedItemData(int selectedIndex);
     bool setSelectedItemData(int selectedIndex, const QVariantMap &data);
@@ -293,12 +292,22 @@ private:
     QVariantMap itemData(const QString &tabName, int i);
     QByteArray itemData(const QString &tabName, int i, const QString &mime);
 
-    ClipboardBrowser *currentBrowser() const;
-    QList<QPersistentModelIndex> selectedIndexes() const;
+    void setItemsData(
+        ClipboardBrowser *c, const QList<QPersistentModelIndex> &indexes, const QString &mime, const QVariant &value);
+
+    template<typename T>
+    T getSelectionData(const QString &mime);
+
+    QPersistentModelIndex currentIndex();
+    QList<QPersistentModelIndex> selectedIndexes();
+
+    ClipboardBrowser *browserForIndexes(const QList<QPersistentModelIndex> &indexes) const;
 
     QVariant waitForFunctionCallFinished(int functionId);
 
     QByteArray callFunctionHelper(const QByteArray &serializedFunctionCall);
+
+    bool getSelectionData();
 
 #ifdef HAS_TESTS
     KeyClicker *keyClicker();

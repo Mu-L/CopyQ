@@ -1,27 +1,45 @@
 {
-    "version": 3,
+    "version": 6,
     "configurePresets": [
         {
             "name": "Debug",
             "generator": "Ninja",
-            "binaryDir": "${sourceParentDir}/build",
-            "installDir": "${sourceParentDir}/install",
+            "binaryDir": "${sourceParentDir}/build/copyq/${presetName}",
+            "installDir": "${sourceParentDir}/install/copyq/${presetName}",
             "cacheVariables": {
                 "WITH_TESTS": "TRUE",
                 "PEDANTIC": "TRUE",
+                "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_C_COMPILER_LAUNCHER": "ccache",
                 "CMAKE_CXX_COMPILER_LAUNCHER": "ccache"
             }
         },
         {
-            "name": "macOS",
+            "name": "macOS-10",
             "generator": "Ninja",
-            "binaryDir": "${sourceParentDir}/build",
-            "installDir": "${sourceParentDir}/build",
+            "binaryDir": "${sourceParentDir}/build/copyq/${presetName}",
+            "installDir": "${sourceParentDir}/build/copyq/${presetName}",
             "cacheVariables": {
+                "WITH_QT6": "TRUE",
                 "WITH_TESTS": "TRUE",
-                "CMAKE_PREFIX_PATH": "/usr/local/opt/qt@5/lib/cmake",
+                "CMAKE_PREFIX_PATH": "/usr/local/opt/qt/lib/cmake",
                 "CMAKE_OSX_DEPLOYMENT_TARGET": "10.15",
+                "CMAKE_C_COMPILER_LAUNCHER": "ccache",
+                "CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
+                "CMAKE_CXX_FLAGS": "-Wno-deprecated-declarations"
+            }
+        },
+        {
+            "name": "macOS-12-m1",
+            "generator": "Ninja",
+            "binaryDir": "${sourceParentDir}/build/copyq/${presetName}",
+            "installDir": "${sourceParentDir}/build/copyq/${presetName}",
+            "cacheVariables": {
+                "WITH_QT6": "TRUE",
+                "WITH_TESTS": "TRUE",
+                "CMAKE_PREFIX_PATH": "/usr/local/opt/qt/lib/cmake",
+                "CMAKE_OSX_DEPLOYMENT_TARGET": "12",
+                "CMAKE_OSX_ARCHITECTURES": "arm64",
                 "CMAKE_C_COMPILER_LAUNCHER": "ccache",
                 "CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
                 "CMAKE_CXX_FLAGS": "-Wno-deprecated-declarations"
@@ -36,10 +54,26 @@
             "targets": "install"
         },
         {
-            "name": "macOS",
-            "configurePreset": "macOS",
+            "name": "macOS-10",
+            "configurePreset": "macOS-10",
             "configuration": "Release",
             "targets": "install"
+        },
+        {
+            "name": "macOS-12-m1",
+            "configurePreset": "macOS-12-m1",
+            "configuration": "Release",
+            "targets": "install"
+        }
+    ],
+    "packagePresets": [
+        {
+            "name": "macOS-10",
+            "configurePreset": "macOS-10"
+        },
+        {
+            "name": "macOS-12-m1",
+            "configurePreset": "macOS-12-m1"
         }
     ]
 }

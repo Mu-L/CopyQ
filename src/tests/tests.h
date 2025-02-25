@@ -94,6 +94,7 @@ private slots:
     void commandHasClipboardFormat();
 
     void commandEdit();
+    void commandEditItem();
 
     void commandGetSetCurrentPath();
 
@@ -220,6 +221,8 @@ private slots:
 
     void configTabs();
 
+    void selectedItems();
+
     void shortcutCommand();
     void shortcutCommandOverrideEnter();
     void shortcutCommandMatchInput();
@@ -243,6 +246,8 @@ private slots:
     void automaticCommandCopyToTab();
     void automaticCommandStoreSpecialFormat();
     void automaticCommandIgnoreSpecialFormat();
+
+    void globalCommandInMenu();
 
     void scriptCommandLoaded();
     void scriptCommandAddFunction();
@@ -285,11 +290,11 @@ private slots:
 
     void actionDialogCancel();
     void actionDialogAccept();
-    void actionDialogSelection();
     void actionDialogSelectionInputOutput();
 
     void exitConfirm();
     void exitNoConfirm();
+    void exitStopCommands();
 
     void abortInputReader();
 
@@ -303,10 +308,14 @@ private slots:
     void startServerAndRunCommand();
 
     void avoidStoringPasswords();
+    void scriptsForPasswords();
 
     void currentClipboardOwner();
 
     void saveLargeItem();
+
+    void slowClipboard();
+    void clipboardUriList();
 
 private:
     void clearServerErrors();

@@ -35,6 +35,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QMimeData>
+#include <QPushButton>
 #include <QSessionManager>
 #include <QStyleFactory>
 #include <QTextEdit>
@@ -370,19 +371,20 @@ bool ClipboardServer::askToQuit()
                                 m_wnd );
 
         messageBox.addButton(tr("Cancel Exiting"), QMessageBox::RejectRole);
-        messageBox.addButton(tr("Exit Anyway"), QMessageBox::AcceptRole);
+        QAbstractButton *exitButton = messageBox.addButton(tr("Exit Anyway"), QMessageBox::AcceptRole);
 
         // Close the message box automatically after all running commands finish.
         QTimer timerCheckRunningCommands;
         timerCheckRunningCommands.setInterval(1000);
         connect( &timerCheckRunningCommands, &QTimer::timeout,
-                 this, [&]() {
+                 exitButton, [&]() {
                     if ( !hasRunningCommands() )
-                        messageBox.accept();
+                        exitButton->click();
                  });
         timerCheckRunningCommands.start();
 
-        return messageBox.exec() == QMessageBox::Accepted;
+        messageBox.exec();
+        return exitButton == messageBox.clickedButton();
     }
 
     return true;
@@ -684,7 +686,7 @@ void ClipboardServer::loadSettings(AppConfig *appConfig)
     m_sharedData->editor = appConfig->option<Config::editor>();
     m_sharedData->maxItems = appConfig->option<Config::maxitems>();
     m_sharedData->textWrap = appConfig->option<Config::text_wrap>();
-    m_sharedData->viMode = appConfig->option<Config::vi>();
+    m_sharedData->navigationStyle = appConfig->option<Config::navigation_style>();
     m_sharedData->saveOnReturnKey = !appConfig->option<Config::edit_ctrl_return>();
     m_sharedData->moveItemOnReturnKey = appConfig->option<Config::move>();
     m_sharedData->showSimpleItems = appConfig->option<Config::show_simple_items>();

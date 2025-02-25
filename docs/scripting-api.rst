@@ -494,9 +494,21 @@ unlike in GUI, where row numbers start from 1 by default.
 
 .. js:function:: edit([row|text] ...)
 
-   Edits items in current tab.
+   Edits items in the current tab.
 
    Opens external editor if set, otherwise opens internal editor.
+
+   If row is -1 (or other negative number) edits clipboard instead
+   and creates new item.
+
+.. js:function:: editItem(row, [mimeType, [data]])
+
+   Edits specific format for the item.
+
+   Opens external editor if set, otherwise opens internal editor.
+
+   If row is -1 (or other negative number) edits clipboard instead
+   and creates new item.
 
 .. js:function:: read([mimeType])
 
@@ -861,16 +873,14 @@ unlike in GUI, where row numbers start from 1 by default.
 
    Returns tab that was selected when script was executed.
 
-   :returns: Currently selected tab name, empty if called outside the main
-             window context (see `Selected Items`_).
+   :returns: Currently selected tab name (see `Selected Items`_).
    :rtype: string
 
 .. js:function:: selectedItems()
 
    Returns selected rows in current tab.
 
-   :returns: Currently selected rows, empty if called outside the main
-             window context (see `Selected Items`_).
+   :returns: Currently selected rows (see `Selected Items`_).
    :rtype: array of ints
 
 .. js:function:: selectedItemData(index)
@@ -880,8 +890,7 @@ unlike in GUI, where row numbers start from 1 by default.
    The data can empty if the item was removed during execution of the
    script.
 
-   :returns: Currently selected items, empty if called outside the main
-             window context (see `Selected Items`_).
+   :returns: Currently selected items (see `Selected Items`_).
    :rtype: array of :js:class:`Item`
 
 .. js:function:: setSelectedItemData(index, Item)
@@ -903,8 +912,7 @@ unlike in GUI, where row numbers start from 1 by default.
    Some data can be empty if the item was removed during execution of the
    script.
 
-   :returns: Currently selected item data, empty if called outside the main
-             window context (see `Selected Items`_).
+   :returns: Currently selected item data (see `Selected Items`_).
    :rtype: array of :js:class:`Item`
 
 .. js:function:: setSelectedItemsData(Item[])
@@ -923,8 +931,7 @@ unlike in GUI, where row numbers start from 1 by default.
 
    See `Selected Items`_.
 
-   :returns: Current row, ``-1`` if called outside the main
-             window context (see `Selected Items`_).
+   :returns: Current row (see `Selected Items`_).
    :rtype: int
 
 .. js:function:: escapeHtml(text)
@@ -1040,9 +1047,10 @@ unlike in GUI, where row numbers start from 1 by default.
    If argument is function it will be called with array of lines read from
    stdout whenever available.
 
-   :returns: Finished command properties or ``undefined`` if executable was not
-             found or could not be executed.
-   :rtype: :js:class:`FinishedCommand` or ``undefined``
+   An exception is thrown if executable was not found or could not be executed.
+
+   :returns: Finished command properties.
+   :rtype: :js:class:`FinishedCommand`
 
    Example -- create item for each line on stdout:
 
@@ -1101,6 +1109,18 @@ unlike in GUI, where row numbers start from 1 by default.
          '.title', 'Command Finished',
          '.label', 'Command <b>successfully</b> finished.'
          )
+
+   Accepting a dialog containing only a question returns ``true``
+   (rejecting/cancelling the dialog returns ``undefined``).
+
+   .. code-block:: js
+
+       const remove = dialog(
+         '.title', 'Remove Items',
+         '.label', 'Do you really want to remove all items?'
+         )
+       if (!remove)
+           abort();
 
    Other arguments are used to get user input.
 
@@ -1445,7 +1465,8 @@ unlike in GUI, where row numbers start from 1 by default.
 
 .. js:function:: onClipboardChanged()
 
-   Called when clipboard or `Linux mouse selection`_ changes.
+   Called when clipboard or `Linux mouse selection`_ changes and is not set by
+   CopyQ, is not marked as hidden nor secret (see the other callbacks).
 
    Default implementation is:
 
@@ -1462,7 +1483,8 @@ unlike in GUI, where row numbers start from 1 by default.
 
 .. js:function:: onOwnClipboardChanged()
 
-   Called when clipboard or `Linux mouse selection`_ changes by a CopyQ instance.
+   Called when clipboard or `Linux mouse selection`_ is set by CopyQ and is not
+   marked as hidden nor secret (see the other callbacks).
 
    Owned clipboard data contains :js:data:`mimeOwner` format.
 
@@ -1470,11 +1492,27 @@ unlike in GUI, where row numbers start from 1 by default.
 
 .. js:function:: onHiddenClipboardChanged()
 
-   Called when hidden clipboard or `Linux mouse selection`_ changes.
+   Called when clipboard or `Linux mouse selection`_ changes and is marked as
+   hidden but not secret (see the other callbacks).
 
    Hidden clipboard data contains :js:data:`mimeHidden` format set to ``1``.
 
    Default implementation calls :js:func:`updateClipboardData`.
+
+.. js:function:: onSecretClipboardChanged()
+
+   Called if the clipboard or `Linux mouse selection`_ changes and contains a
+   password or other secret (for example, copied from clipboard manager).
+
+   The default implementation clears all data, so they are not accessible using
+   :js:func:`data` and :js:func:`dataFormats`, except :js:data:`mimeSecret`,
+   and calls :js:func:`updateClipboardData`.
+
+   **Be careful overriding** this function (via a Script command). Calling
+   `onClipboardChanged()` without clearing the data and without any further
+   checks can cause storing and processing secrets from password managers. On
+   the other hand, it can help to get access to the data copied, for example
+   from a web browser in private mode.
 
 .. js:function:: onClipboardUnchanged()
 
@@ -1555,6 +1593,28 @@ unlike in GUI, where row numbers start from 1 by default.
    ``copy_selection`` is enabled.
 
    Default implementation calls :js:func:`provideClipboard`.
+
+.. js:function:: provideClipboard()
+
+   Starts a process provides a data for clipboard.
+
+   The data can be set using :js:func:`setData`.
+
+   The script must be started with ``--clipboard-access`` command line flag.
+
+.. js:function:: provideSelection()
+
+   Starts a process that provides a data for `Linux mouse selection`_.
+
+   The data can be set using :js:func:`setData`.
+
+   The script must be started with ``--clipboard-access`` command line flag.
+
+.. js:function:: monitorClipboard()
+
+   Starts a clipboard monitor process.
+
+   The script must be started with ``--clipboard-access`` command line flag.
 
 .. js:function:: clipboardFormatsToSave()
 
@@ -2188,6 +2248,10 @@ These MIME types values are assigned to global variables prefixed with
 
        copyq copy application/x-copyq-hidden 1 plain/text "This is secret"
 
+.. js:data:: mimeSecret
+
+   If set to ``1``, the clipboard contains a password or other secret (for example, copied from clipboard manager).
+
 .. js:data:: mimeShortcut
 
    Application or global shortcut which activated the command. Value: 'application/x-copyq-shortcut'.
@@ -2235,12 +2299,27 @@ These MIME types values are assigned to global variables prefixed with
 Selected Items
 --------------
 
-Functions that get and set data for selected items and current tab are
-only available if called from Action dialog or from a command which is
-in menu.
+The internal state for currently evaluated script/command stores references
+(not rows or item data) to the current and selected items and it do not change
+after the state is retrieved from GUI.
 
-Selected items are indexed from top to bottom as they appeared in the
-current tab at the time the command is executed.
+The state is retrieved before the script/command starts if it is invoked from
+the application with a shortcut, from menu, toolbar or the Action dialog.
+Otherwise, the state is retrieved when needed (for example the first
+``selectedItems()`` call) for scripts/commands run externally (for example from
+command line or from automatic commands on clipboard content change).
+
+If a selected or current item is moved, script functions will return the new
+rows. For example ``selectedItems()`` returning ``[0,1]`` will return ``[1,0]``
+after the items are swapped. Same goes for selected item data.
+
+If a selected or current item is removed, their references in the internal
+state are invalidated. These references will return -1 for row and empty object
+for item data. For example ``selectedItems()`` returning ``[0,1]`` will return
+``[0,-1]`` after the item on the second row is removed.
+
+If tab is renamed, all references to current and selected items are invalidated
+because the tab data need to be initiated again.
 
 Linux Mouse Selection
 ---------------------

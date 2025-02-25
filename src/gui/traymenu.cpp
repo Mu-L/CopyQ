@@ -58,7 +58,6 @@ TrayMenu::TrayMenu(QWidget *parent)
     : QMenu(parent)
     , m_clipboardItemActionCount(0)
     , m_omitPaste(false)
-    , m_viMode(false)
     , m_numberSearch(false)
 {
     m_clipboardItemActionsSeparator = addSeparator();
@@ -81,8 +80,21 @@ bool TrayMenu::updateIconFromData(QAction *act, const QVariantMap &data)
 
     const QString icon = data.value(mimeIcon).toString();
     const QString tag = data.value(COPYQ_MIME_PREFIX "item-tag").toString();
-    if ( icon.isEmpty() && tag.isEmpty() )
-        return false;
+
+    if ( icon.isEmpty() && tag.isEmpty() ) {
+        const QString colorName = data.value(mimeColor).toString();
+        if ( colorName.isEmpty() )
+            return false;
+
+        const QColor color(colorName);
+        if ( !color.isValid() )
+            return false;
+
+        QPixmap pix(16, 16);
+        pix.fill(color);
+        act->setIcon(pix);
+        return true;
+    }
 
     const QColor color = getDefaultIconColor(*act->parentWidget());
     act->setIcon( iconFromFile(icon, tag, color) );
@@ -92,8 +104,13 @@ bool TrayMenu::updateIconFromData(QAction *act, const QVariantMap &data)
 QAction *TrayMenu::addClipboardItemAction(const QVariantMap &data, bool showImages)
 {
     // Show search text at top of the menu.
-    if ( m_clipboardItemActionCount == 0 && m_searchText.isEmpty() )
-        setSearchMenuItem( m_viMode ? tr("Press '/' to search") : tr("Type to search") );
+    if ( m_clipboardItemActionCount == 0 && m_searchText.isEmpty() ) {
+        if (m_navigationStyle == NavigationStyle::Vi) {
+            setSearchMenuItem( tr("Press '/' to search") );
+        } else {
+            setSearchMenuItem( tr("Type to search") );
+        }
+    }
 
     QAction *act = addAction(QString());
     m_clipboardActions.append(act);
@@ -194,9 +211,9 @@ void TrayMenu::clearAllActions()
     m_searchText.clear();
 }
 
-void TrayMenu::setViModeEnabled(bool enabled)
+void TrayMenu::setNavigationStyle(NavigationStyle style)
 {
-    m_viMode = enabled;
+    m_navigationStyle = style;
 }
 
 void TrayMenu::setNumberSearchEnabled(bool enabled)
@@ -209,7 +226,11 @@ void TrayMenu::keyPressEvent(QKeyEvent *event)
     const int key = event->key();
     m_omitPaste = false;
 
-    if ( m_viMode && m_searchText.isEmpty() && handleViKey(event, this) ) {
+    bool not_searching = m_searchText.isEmpty();
+
+    if ( not_searching && m_navigationStyle == NavigationStyle::Vi && handleViKey(event, this) ) {
+        return;
+    } else if ( not_searching && m_navigationStyle == NavigationStyle::Emacs && handleEmacsKey(event, this) ) {
         return;
     } else {
         // Movement in tray menu.
@@ -242,7 +263,7 @@ void TrayMenu::keyPressEvent(QKeyEvent *event)
         default:
             // Type text for search.
             if ( (m_clipboardItemActionCount > 0 || !m_searchText.isEmpty())
-                 && (!m_viMode || !m_searchText.isEmpty() || key == Qt::Key_Slash)
+                 && (m_navigationStyle != NavigationStyle::Vi || !m_searchText.isEmpty() || key == Qt::Key_Slash)
                  && !event->modifiers().testFlag(Qt::AltModifier)
                  && !event->modifiers().testFlag(Qt::ControlModifier) )
             {
@@ -252,7 +273,8 @@ void TrayMenu::keyPressEvent(QKeyEvent *event)
                     if ( !m_numberSearch && m_searchText.isEmpty() ) {
                         bool ok;
                         const int row = txt.toInt(&ok);
-                        if (ok && row < m_clipboardItemActionCount) {
+                        const int start = static_cast<int>(m_rowIndexFromOne);
+                        if (ok && start <= row && row < start + m_clipboardItemActionCount) {
                             // Allow keypad digit to activate appropriate item in context menu.
                             if (event->modifiers() == Qt::KeypadModifier)
                                 event->setModifiers(Qt::NoModifier);
@@ -327,7 +349,7 @@ void TrayMenu::search(const QString &text)
         return;
 
     m_searchText = text;
-    emit searchRequest(m_viMode ? m_searchText.mid(1) : m_searchText);
+    emit searchRequest((m_navigationStyle == NavigationStyle::Vi) ? m_searchText.mid(1) : m_searchText);
 }
 
 void TrayMenu::markItemInClipboard(const QVariantMap &clipboardData)

@@ -9,8 +9,6 @@
 #include <QStringList>
 #include <QTimer>
 
-#include <memory>
-
 class X11PlatformClipboard final : public DummyClipboard
 {
 public:
@@ -24,13 +22,18 @@ public:
 
     void setData(ClipboardMode mode, const QVariantMap &dataMap) override;
 
-    bool isSelectionSupported() const override { return m_selectionSupported; }
+    bool isSelectionSupported() const override { return true; }
 
     void setClipboardOwner(const QString &owner) override { m_clipboardOwner = owner; }
 
 protected:
     const QMimeData *rawMimeData(ClipboardMode mode) const override;
     void onChanged(int mode) override;
+    const long int *clipboardSequenceNumber(ClipboardMode mode) const override {
+        return mode == ClipboardMode::Clipboard
+            ? &m_clipboardData.sequenceNumber
+            : &m_selectionData.sequenceNumber;
+    }
 
 private:
     struct ClipboardData {
@@ -44,7 +47,7 @@ private:
         ClipboardMode mode;
         bool enabled = true;
         bool cloningData = false;
-        bool abortCloning = false;
+        long int sequenceNumber = 0;
         bool ignoreNext = false;
         int retry = 0;
     };
@@ -60,7 +63,6 @@ private:
     ClipboardData m_selectionData;
 
     bool m_monitoring = false;
-    bool m_selectionSupported = true;
 
     QString m_clipboardOwner;
 };

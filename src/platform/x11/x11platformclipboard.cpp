@@ -6,6 +6,7 @@
 
 #include "x11info.h"
 
+#include "common/clipboarddataguard.h"
 #include "common/common.h"
 #include "common/mimetypes.h"
 #include "common/log.h"
@@ -22,6 +23,7 @@
 
 #include <QClipboard>
 #include <QMimeData>
+#include <QPointer>
 
 namespace {
 
@@ -41,16 +43,16 @@ bool isSelectionIncomplete()
         return false;
 
     // If mouse button or shift is pressed then assume that user is selecting text.
-    XEvent event{};
+    XButtonEvent event{};
     XQueryPointer(display, DefaultRootWindow(display),
-                  &event.xbutton.root, &event.xbutton.window,
-                  &event.xbutton.x_root, &event.xbutton.y_root,
-                  &event.xbutton.x, &event.xbutton.y,
-                  &event.xbutton.state);
+                  &event.root, &event.window,
+                  &event.x_root, &event.y_root,
+                  &event.x, &event.y,
+                  &event.state);
 
-    return event.xbutton.state & (Button1Mask | ShiftMask);
+    return event.state & (Button1Mask | ShiftMask);
 #else
-    return true;
+    return false;
 #endif
 }
 
@@ -63,7 +65,7 @@ X11PlatformClipboard::X11PlatformClipboard()
 
     // Create Wayland clipboard instance so it can start receiving new data.
     if ( !X11Info::isPlatformX11() ) {
-        m_selectionSupported = WaylandClipboard::instance()->isSelectionSupported();
+        WaylandClipboard::instance();
     }
 }
 
@@ -147,24 +149,33 @@ void X11PlatformClipboard::setData(ClipboardMode mode, const QVariantMap &dataMa
     if ( X11Info::isPlatformX11() ) {
         // WORKAROUND: Avoid getting X11 warning "QXcbClipboard: SelectionRequest too old".
         QCoreApplication::processEvents();
-        DummyClipboard::setData(mode, dataMap);
-    } else {
-        const auto data = createMimeData(dataMap);
-        const auto qmode = modeToQClipboardMode(mode);
-        WaylandClipboard::instance()->setMimeData(data, qmode);
 
-        // This makes pasting the clipboard work in own widgets.
-        const auto data2 = createMimeData(dataMap);
-        QGuiApplication::clipboard()->setMimeData(data2, qmode);
+        // WORKAROUND: XWayland on GNOME does not handle UTF-8 text properly.
+        if ( dataMap.contains(mimeTextUtf8) && qgetenv("XAUTHORITY").contains("mutter-Xwayland") ) {
+            auto dataMap2 = dataMap;
+            dataMap2[mimeText] = dataMap[mimeTextUtf8];
+            DummyClipboard::setData(mode, dataMap2);
+        } else {
+            DummyClipboard::setData(mode, dataMap);
+        }
+    } else {
+        DummyClipboard::setData(mode, dataMap);
+        if ( WaylandClipboard::instance()->waitForDevice(1000) ) {
+            const auto data = createMimeData(dataMap);
+            const auto qmode = modeToQClipboardMode(mode);
+            WaylandClipboard::instance()->setMimeData(data, qmode);
+        }
     }
 }
 
 const QMimeData *X11PlatformClipboard::rawMimeData(ClipboardMode mode) const
 {
-    if ( X11Info::isPlatformX11() )
-        return DummyClipboard::rawMimeData(mode);
-
-    return WaylandClipboard::instance()->mimeData( modeToQClipboardMode(mode) );
+    if ( !X11Info::isPlatformX11() && WaylandClipboard::instance()->waitForDevice(1000) ) {
+        const auto data = WaylandClipboard::instance()->mimeData( modeToQClipboardMode(mode) );
+        if (data != nullptr)
+            return data;
+    }
+    return DummyClipboard::rawMimeData(mode);
 }
 
 void X11PlatformClipboard::onChanged(int mode)
@@ -173,6 +184,8 @@ void X11PlatformClipboard::onChanged(int mode)
     if (!clipboardData.enabled)
         return;
 
+    ++clipboardData.sequenceNumber;
+
     // Store the current window title right after the clipboard/selection changes.
     // This makes sure that the title points to the correct clipboard/selection
     // owner most of the times.
@@ -180,7 +193,7 @@ void X11PlatformClipboard::onChanged(int mode)
 
     if (mode == QClipboard::Selection) {
         // Omit checking selection too fast.
-        if ( mode == QClipboard::Selection && m_timerCheckAgain.isActive() ) {
+        if ( m_timerCheckAgain.isActive() ) {
             COPYQ_LOG("Postponing fast selection change");
             return;
         }
@@ -196,14 +209,8 @@ void X11PlatformClipboard::onChanged(int mode)
         }
     }
 
-    if (m_clipboardData.cloningData || m_selectionData.cloningData) {
-        if (clipboardData.cloningData && !clipboardData.abortCloning) {
-            COPYQ_LOG( QString("Aborting getting %1, the data changed again")
-                       .arg(mode == QClipboard::Clipboard ? "clipboard" : "selection") );
-            clipboardData.abortCloning = true;
-        }
+    if (m_clipboardData.cloningData || m_selectionData.cloningData)
         return;
-    }
 
     updateClipboardData(&clipboardData);
 
@@ -213,8 +220,7 @@ void X11PlatformClipboard::onChanged(int mode)
 void X11PlatformClipboard::check()
 {
     if (m_clipboardData.cloningData || m_selectionData.cloningData) {
-        m_timerCheckAgain.setInterval(minCheckAgainIntervalMs);
-        m_timerCheckAgain.start();
+        m_timerCheckAgain.start(minCheckAgainIntervalMs);
         return;
     }
 
@@ -245,10 +251,10 @@ void X11PlatformClipboard::updateClipboardData(X11PlatformClipboard::ClipboardDa
         return;
     }
 
-    const auto data = mimeData(clipboardData->mode);
+    ClipboardDataGuard data( mimeData(clipboardData->mode), &clipboardData->sequenceNumber );
 
     // Retry to retrieve clipboard data few times.
-    if (!data) {
+    if (data.isExpired()) {
         if ( !X11Info::isPlatformX11() )
             return;
 
@@ -269,12 +275,7 @@ void X11PlatformClipboard::updateClipboardData(X11PlatformClipboard::ClipboardDa
     }
     clipboardData->retry = 0;
 
-    // Ignore clipboard with secrets
-    const QByteArray passwordManagerHint = data->data(QStringLiteral("x-kde-passwordManagerHint"));
-    if ( passwordManagerHint == QByteArrayLiteral("secret") )
-        return;
-
-    const QByteArray newDataTimestampData = data->data(QStringLiteral("TIMESTAMP"));
+    const QByteArray newDataTimestampData = data.data(QStringLiteral("TIMESTAMP"));
     quint32 newDataTimestamp = 0;
     if ( !newDataTimestampData.isEmpty() ) {
         QDataStream stream(newDataTimestampData);
@@ -287,19 +288,21 @@ void X11PlatformClipboard::updateClipboardData(X11PlatformClipboard::ClipboardDa
     // In case there is a valid timestamp, omit update if the timestamp and
     // text did not change.
     if ( newDataTimestamp != 0 && clipboardData->newDataTimestamp == newDataTimestamp ) {
-        const QVariantMap newData = cloneData(*data, {mimeText});
-        if (newData.value(mimeText) == clipboardData->newData.value(mimeText))
+        const QVariantMap newData = cloneData(data, {mimeText});
+        if (data.isExpired() || newData.value(mimeText) == clipboardData->newData.value(mimeText))
             return;
     }
 
     clipboardData->timerEmitChange.stop();
-    clipboardData->abortCloning = false;
     clipboardData->cloningData = true;
-    clipboardData->newData = cloneData(*data, clipboardData->formats, &clipboardData->abortCloning);
+    const bool isDataSecret = isHidden(*data.mimeData());
+    clipboardData->newData = cloneData(data, clipboardData->formats);
+    if (isDataSecret)
+        clipboardData->newData[mimeSecret] = QByteArrayLiteral("1");
     clipboardData->cloningData = false;
-    if (clipboardData->abortCloning) {
-        m_timerCheckAgain.setInterval(0);
-        m_timerCheckAgain.start();
+
+    if (data.isExpired()) {
+        m_timerCheckAgain.start(0);
         return;
     }
 
@@ -313,6 +316,10 @@ void X11PlatformClipboard::updateClipboardData(X11PlatformClipboard::ClipboardDa
 
 void X11PlatformClipboard::useNewClipboardData(X11PlatformClipboard::ClipboardData *clipboardData)
 {
+    COPYQ_LOG( QStringLiteral("%1 CHANGED, owner=%2")
+            .arg(clipboardData->mode == ClipboardMode::Clipboard ? "Clipboard" : "Selection")
+            .arg(clipboardData->newOwner) );
+
     clipboardData->data = clipboardData->newData;
     clipboardData->owner = clipboardData->newOwner;
     clipboardData->timerEmitChange.stop();
@@ -324,20 +331,8 @@ void X11PlatformClipboard::useNewClipboardData(X11PlatformClipboard::ClipboardDa
 
 void X11PlatformClipboard::checkAgainLater(bool clipboardChanged, int interval)
 {
-    m_timerCheckAgain.setInterval(interval);
     if (interval < maxCheckAgainIntervalMs)
-        m_timerCheckAgain.start();
+        m_timerCheckAgain.start(interval);
     else if (clipboardChanged)
         m_timerCheckAgain.start(maxCheckAgainIntervalMs);
-    else
-        m_timerCheckAgain.setInterval(0);
-
-    COPYQ_LOG( QString("Clipboard %1, selection %2.%3")
-               .arg(
-                   QString::fromLatin1(m_clipboardData.timerEmitChange.isActive() ? "*CHANGED*" : "unchanged"),
-                   QString::fromLatin1(m_selectionData.timerEmitChange.isActive() ? "*CHANGED*" : "unchanged"),
-                   m_timerCheckAgain.isActive()
-                    ? QString(" Test again in %1ms.").arg(m_timerCheckAgain.interval())
-                    : QString()
-               ) );
 }

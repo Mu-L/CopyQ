@@ -6,6 +6,7 @@
 
 #pragma once
 #include <QClipboard>
+#include <QElapsedTimer>
 #include <QObject>
 #include <memory>
 
@@ -23,10 +24,8 @@ public:
     ~WaylandClipboard();
 
     void setMimeData(QMimeData *mime, QClipboard::Mode mode);
-    void clear(QClipboard::Mode mode);
     const QMimeData *mimeData(QClipboard::Mode mode) const;
-    bool isActive() const { return m_device != nullptr; }
-    bool isSelectionSupported() const;
+    bool waitForDevice(int timeoutMs = 5000) const;
 
 signals:
     void changed(QClipboard::Mode mode);
@@ -37,4 +36,5 @@ private:
 
     std::unique_ptr<DataControlDeviceManager> m_manager;
     std::unique_ptr<DataControlDevice> m_device;
+    QElapsedTimer m_deviceRequestedTimer;
 };

@@ -2,10 +2,24 @@
 
 #include "persistentdisplayitem.h"
 
+#include "common/mimetypes.h"
 #include "gui/traymenu.h"
 #include "item/itemdelegate.h"
 
 #include <QAction>
+
+namespace {
+
+bool dataEquals(const QVariantMap &lhs, const QVariantMap &rhs)
+{
+    for (auto it = lhs.constBegin(); it != lhs.constEnd(); ++it) {
+        if ( it.value().toByteArray() != rhs.value(it.key()).toByteArray() )
+            return false;
+    }
+    return true;
+}
+
+} // namespace
 
 PersistentDisplayItem::PersistentDisplayItem(ItemDelegate *delegate,
         const QVariantMap &data,
@@ -14,6 +28,9 @@ PersistentDisplayItem::PersistentDisplayItem(ItemDelegate *delegate,
     , m_widget(widget)
     , m_delegate(delegate)
 {
+    // Avoid accessing current selection in Display commands.
+    if ( !m_data.contains(mimeCurrentTab) )
+        m_data[mimeSelectedItems] = QByteArray();
 }
 
 PersistentDisplayItem::PersistentDisplayItem(QAction *action, const QVariantMap &data)
@@ -31,7 +48,7 @@ bool PersistentDisplayItem::isValid()
 
 void PersistentDisplayItem::setData(const QVariantMap &data)
 {
-    if ( data.isEmpty() || data == m_data )
+    if ( data.isEmpty() || dataEquals(data, m_data) )
         return;
 
     if ( !m_action.isNull() ) {

@@ -9,27 +9,27 @@
         <translation>Informacije</translation>
     </message>
     <message>
-        <location filename="../src/gui/aboutdialog.cpp" line="108"/>
+        <location filename="../src/gui/aboutdialog.cpp" line="84"/>
         <source>Clipboard Manager</source>
         <translation>Upravljač međuspremnika</translation>
     </message>
     <message>
-        <location filename="../src/gui/aboutdialog.cpp" line="115"/>
+        <location filename="../src/gui/aboutdialog.cpp" line="91"/>
         <source>Author</source>
         <translation>Autor</translation>
     </message>
     <message>
-        <location filename="../src/gui/aboutdialog.cpp" line="116"/>
+        <location filename="../src/gui/aboutdialog.cpp" line="92"/>
         <source>E-mail</source>
         <translation>E-mail</translation>
     </message>
     <message>
-        <location filename="../src/gui/aboutdialog.cpp" line="117"/>
+        <location filename="../src/gui/aboutdialog.cpp" line="93"/>
         <source>Web</source>
         <translation>Web</translation>
     </message>
     <message>
-        <location filename="../src/gui/aboutdialog.cpp" line="118"/>
+        <location filename="../src/gui/aboutdialog.cpp" line="94"/>
         <source>Donate</source>
         <translation>Doniraj</translation>
     </message>
@@ -107,17 +107,17 @@ Naredbu je moguće postaviti u postavkama.</translation>
 <context>
     <name>ActionHandler</name>
     <message>
-        <location filename="../src/gui/actionhandler.cpp" line="135"/>
+        <location filename="../src/gui/actionhandler.cpp" line="118"/>
         <source>Error: %1</source>
         <translation>Greška: %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/actionhandler.cpp" line="145"/>
+        <location filename="../src/gui/actionhandler.cpp" line="128"/>
         <source>Exit code: %1</source>
         <translation>Kod za zatvaranje: %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/actionhandler.cpp" line="175"/>
+        <location filename="../src/gui/actionhandler.cpp" line="158"/>
         <source>Command %1</source>
         <translation>Naredba %1</translation>
     </message>
@@ -148,175 +148,175 @@ Naredbu je moguće postaviti u postavkama.</translation>
         <translation>Dodaj naredbe</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="80"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="63"/>
         <source>Show/hide main window</source>
         <translation>Prikaži/sakrij glavni prozor</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="81"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="64"/>
         <source>Show the tray menu</source>
         <translation>Prikaži izbornik programske trake</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="82"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="65"/>
         <source>Show main window under mouse cursor</source>
         <translation>Prikaži glavni prozor ispod pokazivača miša</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="83"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="66"/>
         <source>Edit clipboard</source>
         <translation>Uredi međuspremnik</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="84"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="67"/>
         <source>Edit first item</source>
         <translation>Uredi prvi element</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="85"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="68"/>
         <source>Copy second item</source>
         <translation>Kopiraj drugi element</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="86"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="69"/>
         <source>Show action dialog</source>
         <translation>Prikaži dijalog radnje</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="87"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="70"/>
         <source>Create new item</source>
         <translation>Stvori novi element</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="88"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="71"/>
         <source>Copy next item</source>
         <translation>Kopiraj sljedeći element</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="89"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="72"/>
         <source>Copy previous item</source>
         <translation>Kopiraj prethodni element</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="90"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="73"/>
         <source>Paste clipboard as plain text</source>
         <translation>Umetni međuspremnik kao običan tekst</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="91"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="74"/>
         <source>Disable clipboard storing</source>
         <translation>Deaktiviraj spremanje međuspremnika</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="92"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="75"/>
         <source>Enable clipboard storing</source>
         <translation>Aktiviraj spremanje međuspremnika</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="93"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="76"/>
         <source>Paste and copy next</source>
         <translation>Kopiraj i umetni sljedeće</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="94"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="77"/>
         <source>Paste and copy previous</source>
         <translation>Kopiraj i umetni prethodno</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="95"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="78"/>
         <source>Take screenshot</source>
         <translation>Snimi sliku ekrana</translation>
     </message>
     <message>
-        <location filename="../src/common/globalshortcutcommands.cpp" line="96"/>
+        <location filename="../src/common/globalshortcutcommands.cpp" line="79"/>
         <source>Paste current date and time</source>
         <translation>Umetni trenutačni datum i vrijeme</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="57"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="40"/>
         <source>New command</source>
         <translation>Nova naredba</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="64"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="47"/>
         <source>Ignore items with no or single character</source>
         <translation>Zanemari elemente s nijednim ili sa samo jednim znakom</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="72"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="84"/>
         <source>Open in &amp;Browser</source>
         <translation>Otvori u &amp;pregledniku</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="80"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="92"/>
         <source>Paste as Plain Text</source>
         <translation>Umetni kao običan tekst</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="88"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="100"/>
         <source>Autoplay videos</source>
         <translation>Automatski pokreni videosnimke</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="97"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="109"/>
         <source>Copy URL (web address) to other tab</source>
         <translation>Kopiraj URL (web-adresu) u drugu karticu</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="104"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="116"/>
         <source>Create thumbnail (needs ImageMagick)</source>
         <translation>Stvori minijature (treba ImageMagick)</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="112"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="124"/>
         <source>Create QR Code from URL (needs qrencode)</source>
         <translation>Stvori QR-kod iz URL-a (treba qrencode)</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="120"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="132"/>
         <source>Tasks</source>
         <comment>Tab name for some predefined commands</comment>
         <translation>Zadaci</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="123"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="135"/>
         <source>Add to %1 tab</source>
         <comment>%1 is quoted Tasks tab name</comment>
         <translation>Dodaj kartici „%1”</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="131"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="143"/>
         <source>Move to %1 tab</source>
         <comment>%1 is quoted Tasks tab name</comment>
         <translation>Premjesti na karticu „%1”</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="140"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="151"/>
         <source>Ignore copied files</source>
         <translation>Zanemari kopirane datoteke</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="149"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="160"/>
         <source>Ignore *&quot;Password&quot;* window</source>
         <translation>Zanemari prozor *„Lozinka”*</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="150"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="161"/>
         <source>Password</source>
         <translation>Lozinka</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="158"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="169"/>
         <source>Move to Trash</source>
         <translation>Premjesti u smeće</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="161"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="172"/>
         <source>(trash)</source>
         <translation>(smeće)</translation>
     </message>
     <message>
-        <location filename="../src/common/predefinedcommands.cpp" line="165"/>
+        <location filename="../src/common/predefinedcommands.cpp" line="176"/>
         <source>Clear Current Tab</source>
         <translation>Izbriši trenutačnu karticu</translation>
     </message>
@@ -324,17 +324,17 @@ Naredbu je moguće postaviti u postavkama.</translation>
 <context>
     <name>ClipboardBrowser</name>
     <message>
-        <location filename="../src/gui/clipboardbrowser.cpp" line="1620"/>
+        <location filename="../src/gui/clipboardbrowser.cpp" line="1591"/>
         <source>Cannot add new items to tab %1. Please remove items manually to make space.</source>
         <translation>Nije moguće dodati nove elemente u karticu „%1”. Oslobodi mjesta ručnim uklanjanjem elemenata.</translation>
     </message>
     <message>
-        <location filename="../src/gui/clipboardbrowser.cpp" line="1907"/>
+        <location filename="../src/gui/clipboardbrowser.cpp" line="1910"/>
         <source>Discard Changes?</source>
         <translation>Odbaciti promjene?</translation>
     </message>
     <message>
-        <location filename="../src/gui/clipboardbrowser.cpp" line="1908"/>
+        <location filename="../src/gui/clipboardbrowser.cpp" line="1911"/>
         <source>Do you really want to &lt;strong&gt;discard changes&lt;/strong&gt;?</source>
         <translation>Zaista želiš &lt;strong&gt;odabaciti promjene&lt;/strong&gt;?</translation>
     </message>
@@ -342,12 +342,12 @@ Naredbu je moguće postaviti u postavkama.</translation>
 <context>
     <name>ClipboardClient</name>
     <message>
-        <location filename="../src/app/clipboardclient.cpp" line="121"/>
+        <location filename="../src/app/clipboardclient.cpp" line="101"/>
         <source>Connection lost!</source>
         <translation>Veza izgubljena!</translation>
     </message>
     <message>
-        <location filename="../src/app/clipboardclient.cpp" line="128"/>
+        <location filename="../src/app/clipboardclient.cpp" line="108"/>
         <source>Cannot connect to server! Start CopyQ server first.</source>
         <translation>Nije moguće povezati se s poslužiteljem. Najprije pokreni poslužitelj CopyQ-a.</translation>
     </message>
@@ -375,12 +375,12 @@ Naredbu je moguće postaviti u postavkama.</translation>
         <translation>Ukloni format</translation>
     </message>
     <message>
-        <location filename="../src/gui/clipboarddialog.cpp" line="99"/>
+        <location filename="../src/gui/clipboarddialog.cpp" line="82"/>
         <source>Item Content</source>
         <translation>Sadržaj elementa</translation>
     </message>
     <message>
-        <location filename="../src/gui/clipboarddialog.cpp" line="168"/>
+        <location filename="../src/gui/clipboarddialog.cpp" line="151"/>
         <source>&lt;strong&gt;Size:&lt;/strong&gt; %1 bytes</source>
         <comment>Size of clipboard/item data in bytes</comment>
         <translation>&lt;strong&gt;Veličina:&lt;/strong&gt; %1 bajta</translation>
@@ -389,27 +389,27 @@ Naredbu je moguće postaviti u postavkama.</translation>
 <context>
     <name>ClipboardServer</name>
     <message>
-        <location filename="../src/app/clipboardserver.cpp" line="172"/>
+        <location filename="../src/app/clipboardserver.cpp" line="105"/>
         <source>CopyQ server is already running.</source>
         <translation>CopyQ poslužitelj je već pokrenut.</translation>
     </message>
     <message>
-        <location filename="../src/app/clipboardserver.cpp" line="429"/>
+        <location filename="../src/app/clipboardserver.cpp" line="369"/>
         <source>Cancel Active Commands</source>
         <translation>Prekini aktivne naredbe</translation>
     </message>
     <message>
-        <location filename="../src/app/clipboardserver.cpp" line="430"/>
+        <location filename="../src/app/clipboardserver.cpp" line="370"/>
         <source>Cancel active commands and exit?</source>
         <translation>Prekinuti aktivne naredbe i zatvoriti program?</translation>
     </message>
     <message>
-        <location filename="../src/app/clipboardserver.cpp" line="433"/>
+        <location filename="../src/app/clipboardserver.cpp" line="373"/>
         <source>Cancel Exiting</source>
         <translation>Prekini zatvaranje programa</translation>
     </message>
     <message>
-        <location filename="../src/app/clipboardserver.cpp" line="434"/>
+        <location filename="../src/app/clipboardserver.cpp" line="374"/>
         <source>Exit Anyway</source>
         <translation>Svejedno zatvori</translation>
     </message>
@@ -417,7 +417,7 @@ Naredbu je moguće postaviti u postavkama.</translation>
 <context>
     <name>CommandCompleter</name>
     <message>
-        <location filename="../src/gui/commandcompleter.cpp" line="238"/>
+        <location filename="../src/gui/commandcompleter.cpp" line="221"/>
         <source>Ctrl+Space</source>
         <comment>Shortcut to show completion menu</comment>
         <translation>Ctrl+Razmaknica</translation>
@@ -461,32 +461,32 @@ Naredbu je moguće postaviti u postavkama.</translation>
         <translation>Umetni naredbe</translation>
     </message>
     <message>
-        <location filename="../src/gui/commanddialog.cpp" line="194"/>
+        <location filename="../src/gui/commanddialog.cpp" line="177"/>
         <source>Unsaved Changes</source>
         <translation>Nespremljene promjene</translation>
     </message>
     <message>
-        <location filename="../src/gui/commanddialog.cpp" line="194"/>
+        <location filename="../src/gui/commanddialog.cpp" line="177"/>
         <source>Command dialog has unsaved changes.</source>
         <translation>Dijalog naredbi sadrži nespremljene promjene.</translation>
     </message>
     <message>
-        <location filename="../src/gui/commanddialog.cpp" line="272"/>
+        <location filename="../src/gui/commanddialog.cpp" line="255"/>
         <source>Open Files with Commands</source>
         <translation>Otvori datoteke s naredbama</translation>
     </message>
     <message>
-        <location filename="../src/gui/commanddialog.cpp" line="273"/>
+        <location filename="../src/gui/commanddialog.cpp" line="256"/>
         <source>Commands (*.ini);; CopyQ Configuration (copyq.conf copyq-*.conf)</source>
         <translation>Naredbe (*.ini);; CopyQ konfiguracija (copyq.conf copyq-*.conf)</translation>
     </message>
     <message>
-        <location filename="../src/gui/commanddialog.cpp" line="284"/>
+        <location filename="../src/gui/commanddialog.cpp" line="267"/>
         <source>Save Selected Commands</source>
         <translation>Spremi odabrane naredbe</translation>
     </message>
     <message>
-        <location filename="../src/gui/commanddialog.cpp" line="285"/>
+        <location filename="../src/gui/commanddialog.cpp" line="268"/>
         <source>Commands (*.ini)</source>
         <translation>Naredbe (*.ini)</translation>
     </message>
@@ -494,7 +494,7 @@ Naredbu je moguće postaviti u postavkama.</translation>
 <context>
     <name>CommandHelpButton</name>
     <message>
-        <location filename="../src/gui/commandhelpbutton.cpp" line="73"/>
+        <location filename="../src/gui/commandhelpbutton.cpp" line="56"/>
         <source>Command contains list of programs with arguments which will be executed. For example:</source>
         <translation>Naredba sadrži popis programa s argumentima koji će se izvršiti. Na primjer:</translation>
     </message>
@@ -503,38 +503,38 @@ Naredbu je moguće postaviti u postavkama.</translation>
         <translation type="vanished">Programski argument „%1” bit će zamijenjen za tekst elementa, a „%2” do „%9” za tekstove koji se pronađu regularnim izrazom.</translation>
     </message>
     <message>
-        <location filename="../src/gui/commandhelpbutton.cpp" line="77"/>
+        <location filename="../src/gui/commandhelpbutton.cpp" line="60"/>
         <source>Program argument %1 will be substituted for item text.</source>
         <translation>Programski argument %1 zamijenit će se za tekst elementa.</translation>
     </message>
     <message>
-        <location filename="../src/gui/commandhelpbutton.cpp" line="81"/>
+        <location filename="../src/gui/commandhelpbutton.cpp" line="64"/>
         <source>Character %1 can be used to pass standard output to the next program.</source>
         <translation>Znak „%1” može se koristiti za prosljeđivanje standardnog rezultata sljedećem programu.</translation>
     </message>
     <message>
-        <location filename="../src/gui/commandhelpbutton.cpp" line="87"/>
+        <location filename="../src/gui/commandhelpbutton.cpp" line="70"/>
         <source>Following syntax can be used to pass rest of the command as single parameter.</source>
         <translation>Sljedeća sintaksa može se koristiti za prosljeđivanje ostatka naredbe kao jedan parametar.</translation>
     </message>
     <message>
-        <location filename="../src/gui/commandhelpbutton.cpp" line="90"/>
+        <location filename="../src/gui/commandhelpbutton.cpp" line="73"/>
         <source>This gives same output as %1 but is more useful for longer commands.</source>
         <translation>Ovo daje isti rezultat kao „%1”, ali je korisnije za duže naredbe.</translation>
     </message>
     <message>
-        <location filename="../src/gui/commandhelpbutton.cpp" line="97"/>
+        <location filename="../src/gui/commandhelpbutton.cpp" line="80"/>
         <source>Functions listed below can be used as in following commands.</source>
         <translation>Dolje nabrojane funkcije mogu se koristiti kao u sljedećim naredbama.</translation>
     </message>
     <message>
-        <location filename="../src/gui/commandhelpbutton.cpp" line="98"/>
+        <location filename="../src/gui/commandhelpbutton.cpp" line="81"/>
         <source>&amp;clipboard</source>
         <comment>Example tab name</comment>
         <translation>&amp;međuspremnik</translation>
     </message>
     <message>
-        <location filename="../src/gui/commandhelpbutton.cpp" line="132"/>
+        <location filename="../src/gui/commandhelpbutton.cpp" line="115"/>
         <source>Show command help (F1)</source>
         <translation>Prikaži naredbu za pomoć (F1)</translation>
     </message>
@@ -678,7 +678,6 @@ Ostavi prazno za deaktiviranje ovoga.</translation>
 &lt;p&gt;Koristi &lt;b&gt;|&lt;/b&gt; za povezivanje naredbi (proslijedi standardni rezultat sljedećoj naredbi).&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../src/ui/commandwidget.ui" line="356"/>
         <source>Skips the command if the input text does not match this regular expression (leave empty to match everything).
 
 %2 through %9 in Command and Filter will be replaced with the captured texts.
@@ -689,7 +688,7 @@ Examples:
 - Match PDF filenames: \.pdf$
 - Match single character: ^.$
 - Match remote multimedia: ^http://.*\.(ogv|vlc|mp4|mp3)$</source>
-        <translation>Preskače naredbu ako tekst unosa ne odgovara ovom regularnom izrazu (ostavi prazno da odgovara svemu).
+        <translation type="vanished">Preskače naredbu ako tekst unosa ne odgovara ovom regularnom izrazu (ostavi prazno da odgovara svemu).
 
 %2 do %9 u naredbi i filtru zamijenit će se snimljenim tekstovima.
 
@@ -699,6 +698,20 @@ Primjeri:
 - Uskladi imena PDF datoteka: \.pdf$
 - Uskladi jedan znak: ^.$
 - Uskladi udaljene multimedije: ^http://.*\.(ogv|vlc|mp4|mp3)$</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/commandwidget.ui" line="356"/>
+        <source>Skips the command if the input text does not match this regular expression (leave empty to match everything).
+
+%2 through %9 (or argument[1] and up in script) in Command and Filter will be replaced with the captured texts.
+
+Examples:
+
+- Match URL: ^(https?|ftp)://
+- Match PDF filenames: \.pdf$
+- Match single character: ^.$
+- Match remote multimedia: ^http://.*\.(ogv|vlc|mp4|mp3)$</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/ui/commandwidget.ui" line="435"/>
@@ -947,56 +960,56 @@ Napomena: Ako se ovo automatski primijeni, ostale automatske naredbe se ne izvr�
         <translation>Pretprikaz:</translation>
     </message>
     <message>
-        <location filename="../src/gui/configtabappearance.cpp" line="181"/>
+        <location filename="../src/gui/configtabappearance.cpp" line="164"/>
         <source>Open Theme File</source>
         <translation>Otvori datoteku teme</translation>
     </message>
     <message>
-        <location filename="../src/gui/configtabappearance.cpp" line="191"/>
+        <location filename="../src/gui/configtabappearance.cpp" line="174"/>
         <source>Save Theme File As</source>
         <translation>Spremi datoteku teme kao</translation>
     </message>
     <message>
-        <location filename="../src/gui/configtabappearance.cpp" line="210"/>
+        <location filename="../src/gui/configtabappearance.cpp" line="193"/>
         <source>No External Editor</source>
         <translation>Nema vanjskog uređivača</translation>
     </message>
     <message>
-        <location filename="../src/gui/configtabappearance.cpp" line="211"/>
+        <location filename="../src/gui/configtabappearance.cpp" line="194"/>
         <source>Set external editor command first!</source>
         <translation>Najprije postavi naredbu za vanjski uređivač!</translation>
     </message>
     <message>
-        <location filename="../src/gui/configtabappearance.cpp" line="411"/>
+        <location filename="../src/gui/configtabappearance.cpp" line="394"/>
         <source>Abc</source>
         <comment>Preview text for font settings in appearance dialog</comment>
         <translation>Abc</translation>
     </message>
     <message>
-        <location filename="../src/gui/configtabappearance.cpp" line="493"/>
+        <location filename="../src/gui/configtabappearance.cpp" line="476"/>
         <source>item</source>
         <comment>Search expression in preview in Appearance tab.</comment>
         <translation>element</translation>
     </message>
     <message>
-        <location filename="../src/gui/configtabappearance.cpp" line="495"/>
+        <location filename="../src/gui/configtabappearance.cpp" line="478"/>
         <source>Search string is %1.</source>
         <translation>Znakovni niz za pretragu je „%1”.</translation>
     </message>
     <message>
-        <location filename="../src/gui/configtabappearance.cpp" line="496"/>
+        <location filename="../src/gui/configtabappearance.cpp" line="479"/>
         <source>Select an item and
 press F2 to edit.</source>
         <translation>Odaberi element i
 pritisni F2 za uređivanje.</translation>
     </message>
     <message>
-        <location filename="../src/gui/configtabappearance.cpp" line="498"/>
+        <location filename="../src/gui/configtabappearance.cpp" line="481"/>
         <source>Example item %1</source>
         <translation>Element primjera %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/configtabappearance.cpp" line="503"/>
+        <location filename="../src/gui/configtabappearance.cpp" line="486"/>
         <source>Some random notes (Shift+F2 to edit)</source>
         <translation>Neke slučajno odabrane napomene (Shift+F2 za uređivanje)</translation>
     </message>
@@ -1069,82 +1082,105 @@ pritisni F2 za uređivanje.</translation>
         <translation>&amp;Automatsko pokretanje</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="156"/>
         <source>Support for Vi navigation keys (H, J, K, L and more), slash (/) key to search</source>
-        <translation>Podrška za navigacijske tipke za Vi (H, J, K, L i više), kosa crta (/) za pretragu</translation>
+        <translation type="vanished">Podrška za navigacijske tipke za Vi (H, J, K, L i više), kosa crta (/) za pretragu</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="159"/>
         <source>&amp;Vi style navigation</source>
-        <translation>&amp;Vi stil navigacija</translation>
+        <translation type="vanished">&amp;Vi stil navigacija</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="166"/>
+        <location filename="../src/ui/configtabgeneral.ui" line="161"/>
+        <source>Navigation style / Keymap:</source>
+        <translation>Stil navigacije / Tipke:</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/configtabgeneral.ui" line="171"/>
+        <source>Support for Vi navigation (keys H, J, K, L, / and more) and Emacs navigation (Ctrl+N, P, V and more)</source>
+        <translation>Podrška za Vi navigaciju (tipke H, J, K, L, / i više) i Emacs navigaciju (Ctrl+N, P, V i više)</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/configtabgeneral.ui" line="175"/>
+        <source>Default</source>
+        <translation>Standardno</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/configtabgeneral.ui" line="180"/>
+        <source>Vi</source>
+        <translation>Vi</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/configtabgeneral.ui" line="185"/>
+        <source>Emacs</source>
+        <translation>Emacs</translation>
+    </message>
+    <message>
+        <location filename="../src/ui/configtabgeneral.ui" line="208"/>
         <source>Save and restore history of item filters</source>
         <translation>Spremi i obnovi kronologiju filtara elemenata</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="169"/>
+        <location filename="../src/ui/configtabgeneral.ui" line="211"/>
         <source>Save Filter History</source>
         <translation>Spremi kronologiju filtara</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="176"/>
+        <location filename="../src/ui/configtabgeneral.ui" line="218"/>
         <source>Automatically show popup to complete function, type and variable names in commands</source>
         <translation>Automatski prikaži skočni prozor za dovršavanje funkcije, vrste i imena varijabli u naredbama</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="179"/>
+        <location filename="../src/ui/configtabgeneral.ui" line="221"/>
         <source>Auto-complete Commands</source>
         <translation>Automatsko dovršavanje naredbi</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="186"/>
+        <location filename="../src/ui/configtabgeneral.ui" line="228"/>
         <source>Clipboard Manipulation</source>
         <translation>Manipuliranje međuspremnikom</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="198"/>
+        <location filename="../src/ui/configtabgeneral.ui" line="240"/>
         <source>Allow to paste copied content the same way as mouse selections (usually by pressing middle mouse button)</source>
         <translation>Dozvoli umetanje kopiranog sadržaja na isti način kao odabir mišem (obično pritiskom srednje tipke miša)</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="201"/>
+        <location filename="../src/ui/configtabgeneral.ui" line="243"/>
         <source>(&amp;3) Paste clipboard with mouse</source>
         <translation>(&amp;3) Umetni međuspremnik s mišem</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="208"/>
+        <location filename="../src/ui/configtabgeneral.ui" line="250"/>
         <source>Allow to paste mouse selections using shortcut (usually Ctrl+V or Shift+Insert)</source>
         <translation>Dozvoli umetanje odabira mišem koristeći prečac (obično Ctrl+V ili Shift+Insert)</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="211"/>
+        <location filename="../src/ui/configtabgeneral.ui" line="253"/>
         <source>(&amp;4) Paste mouse selection with keyboard</source>
         <translation>(&amp;4) Umetni odabir mišem s tipkovnicom</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="218"/>
+        <location filename="../src/ui/configtabgeneral.ui" line="260"/>
         <source>Save clipboard in history</source>
         <translation>Spremi međuspremnik u kronologiju</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="221"/>
+        <location filename="../src/ui/configtabgeneral.ui" line="263"/>
         <source>(&amp;1) Store clipboard</source>
         <translation>(&amp;1) Spremi međuspremnik</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="231"/>
+        <location filename="../src/ui/configtabgeneral.ui" line="273"/>
         <source>Save text selected with mouse (primary selection) in history</source>
         <translation>Spremi mišem odabrani tekst (primarni odabir) u kronologiju</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="234"/>
+        <location filename="../src/ui/configtabgeneral.ui" line="276"/>
         <source>(&amp;2) Store text selected using mouse</source>
         <translation>(&amp;2) Spremi mišem odabrani tekst</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabgeneral.ui" line="241"/>
+        <location filename="../src/ui/configtabgeneral.ui" line="283"/>
         <source>(&amp;5) Run automatic commands on selection</source>
         <translation>(&amp;5) Pokreni automatske naredbe na odabir</translation>
     </message>
@@ -1253,47 +1289,47 @@ Koristi „Element &gt; Prikaži pretprikaz” za prikaz cijelih elemenata.</tra
         <translation>Aktiviraj element jednim pritiskom</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabhistory.ui" line="240"/>
+        <location filename="../src/ui/configtabhistory.ui" line="237"/>
         <source>After item is activated (double-click or Enter key), copy it to clipboard and ...</source>
         <translation>Nakon aktiviranja elementa (dvaput pritisni mišem ili tipku Enter), kopiraj ga u međuspremnik i …</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabhistory.ui" line="246"/>
+        <location filename="../src/ui/configtabhistory.ui" line="243"/>
         <source>Move item to the top of the list after it is activated</source>
         <translation>Premjesti element na vrh popisa nakon što ste se aktivira</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabhistory.ui" line="249"/>
+        <location filename="../src/ui/configtabhistory.ui" line="246"/>
         <source>Move item to the t&amp;op</source>
         <translation>Premjesti element na &amp;vrh</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabhistory.ui" line="256"/>
+        <location filename="../src/ui/configtabhistory.ui" line="253"/>
         <source>Close main window after item is activated</source>
         <translation>Zatvori glavni prozor nakon što ste se element aktivira</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabhistory.ui" line="259"/>
+        <location filename="../src/ui/configtabhistory.ui" line="256"/>
         <source>&amp;Close main window</source>
         <translation>&amp;Zatvori glavni prozor</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabhistory.ui" line="266"/>
+        <location filename="../src/ui/configtabhistory.ui" line="263"/>
         <source>Focus last window after item is activated</source>
         <translation>Fokusiraj zadnji prozor nakon aktiviranja elementa</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabhistory.ui" line="269"/>
+        <location filename="../src/ui/configtabhistory.ui" line="266"/>
         <source>&amp;Focus last window</source>
         <translation>&amp;Fokusiraj zadnji prozor</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabhistory.ui" line="276"/>
+        <location filename="../src/ui/configtabhistory.ui" line="273"/>
         <source>Paste to current window after item is activated</source>
         <translation>Umetni u trenutačni prozor nakon što ste se element aktivira</translation>
     </message>
     <message>
-        <location filename="../src/ui/configtabhistory.ui" line="279"/>
+        <location filename="../src/ui/configtabhistory.ui" line="276"/>
         <source>&amp;Paste to current window</source>
         <translation>U&amp;metni u trenutačni prozor</translation>
     </message>
@@ -1599,72 +1635,72 @@ Postavi 0 za deaktiviranje prikaza.</translation>
         <translation type="vanished">Konfiguracija</translation>
     </message>
     <message>
-        <location filename="../src/gui/configurationmanager.cpp" line="176"/>
+        <location filename="../src/gui/configurationmanager.cpp" line="159"/>
         <source>General</source>
         <translation>Opće</translation>
     </message>
     <message>
-        <location filename="../src/gui/configurationmanager.cpp" line="177"/>
+        <location filename="../src/gui/configurationmanager.cpp" line="160"/>
         <source>Layout</source>
         <translation>Raspored</translation>
     </message>
     <message>
-        <location filename="../src/gui/configurationmanager.cpp" line="178"/>
+        <location filename="../src/gui/configurationmanager.cpp" line="161"/>
         <source>History</source>
         <translation>Kronologija</translation>
     </message>
     <message>
-        <location filename="../src/gui/configurationmanager.cpp" line="179"/>
+        <location filename="../src/gui/configurationmanager.cpp" line="162"/>
         <source>Tray</source>
         <translation>Programska traka</translation>
     </message>
     <message>
-        <location filename="../src/gui/configurationmanager.cpp" line="180"/>
+        <location filename="../src/gui/configurationmanager.cpp" line="163"/>
         <source>Notifications</source>
         <translation>Obavijesti</translation>
     </message>
     <message>
-        <location filename="../src/gui/configurationmanager.cpp" line="181"/>
+        <location filename="../src/gui/configurationmanager.cpp" line="164"/>
         <source>Tabs</source>
         <translation>Kartice</translation>
     </message>
     <message>
-        <location filename="../src/gui/configurationmanager.cpp" line="182"/>
+        <location filename="../src/gui/configurationmanager.cpp" line="165"/>
         <source>Items</source>
         <translation>Elementi</translation>
     </message>
     <message>
-        <location filename="../src/gui/configurationmanager.cpp" line="183"/>
+        <location filename="../src/gui/configurationmanager.cpp" line="166"/>
         <source>Shortcuts</source>
         <translation>Prečaci</translation>
     </message>
     <message>
-        <location filename="../src/gui/configurationmanager.cpp" line="184"/>
+        <location filename="../src/gui/configurationmanager.cpp" line="167"/>
         <source>Appearance</source>
         <translation>Izgled</translation>
     </message>
     <message>
-        <location filename="../src/gui/configurationmanager.cpp" line="454"/>
+        <location filename="../src/gui/configurationmanager.cpp" line="446"/>
         <source>Invalid value for option &quot;%1&quot;</source>
         <translation>Neispravna vrijednost za opciju „%1”</translation>
     </message>
     <message>
-        <location filename="../src/gui/configurationmanager.cpp" line="499"/>
+        <location filename="../src/gui/configurationmanager.cpp" line="491"/>
         <source>Reset preferences?</source>
         <translation>Vratiti postavke na standardne vrijednosti?</translation>
     </message>
     <message>
-        <location filename="../src/gui/configurationmanager.cpp" line="500"/>
+        <location filename="../src/gui/configurationmanager.cpp" line="492"/>
         <source>This action will reset all your preferences (in all tabs) to default values.&lt;br /&gt;&lt;br /&gt;Do you really want to &lt;strong&gt;reset all preferences&lt;/strong&gt;?</source>
         <translation>Ova radnja vraća sve postavke (u svim karticama) na standardne vrijednosti.&lt;br /&gt;&lt;br /&gt;Zaista želiš &lt;strong&gt;vratiti sve postavke&lt;/strong&gt; na standardne vrijednosti?</translation>
     </message>
     <message>
-        <location filename="../src/gui/configurationmanager.cpp" line="601"/>
+        <location filename="../src/gui/configurationmanager.cpp" line="594"/>
         <source>Restart Required</source>
         <translation>Zahtijeva ponovno pokretanje</translation>
     </message>
     <message>
-        <location filename="../src/gui/configurationmanager.cpp" line="602"/>
+        <location filename="../src/gui/configurationmanager.cpp" line="595"/>
         <source>Language will be changed after application is restarted.</source>
         <translation>Jezik će se promijeniti nakon ponovnog pokretanja programa.</translation>
     </message>
@@ -1677,7 +1713,7 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>FileWatcher</name>
     <message>
-        <location filename="../plugins/itemsync/filewatcher.cpp" line="811"/>
+        <location filename="../plugins/itemsync/filewatcher.cpp" line="574"/>
         <source>Failed to create synchronization directory &quot;%1&quot;!</source>
         <translation>Neuspjelo stvaranje mape za sinkronizaciju „%1”!</translation>
     </message>
@@ -1685,7 +1721,7 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>FilterCompleter</name>
     <message>
-        <location filename="../src/gui/filtercompleter.cpp" line="189"/>
+        <location filename="../src/gui/filtercompleter.cpp" line="172"/>
         <source>Alt+Down</source>
         <comment>Filter completion shortcut</comment>
         <translation>Alt+Dolje</translation>
@@ -1694,12 +1730,12 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>IconSelectButton</name>
     <message>
-        <location filename="../src/gui/iconselectbutton.cpp" line="38"/>
+        <location filename="../src/gui/iconselectbutton.cpp" line="21"/>
         <source>Select Icon…</source>
         <translation>Odberi ikonu …</translation>
     </message>
     <message>
-        <location filename="../src/gui/iconselectbutton.cpp" line="73"/>
+        <location filename="../src/gui/iconselectbutton.cpp" line="56"/>
         <source>...</source>
         <comment>Select/browse icon.</comment>
         <translation>…</translation>
@@ -1708,22 +1744,22 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>IconSelectDialog</name>
     <message>
-        <location filename="../src/gui/iconselectdialog.cpp" line="168"/>
+        <location filename="../src/gui/iconselectdialog.cpp" line="151"/>
         <source>Select Icon</source>
         <translation>Odberi ikonu</translation>
     </message>
     <message>
-        <location filename="../src/gui/iconselectdialog.cpp" line="175"/>
+        <location filename="../src/gui/iconselectdialog.cpp" line="158"/>
         <source>Browse...</source>
         <translation>Pregledaj …</translation>
     </message>
     <message>
-        <location filename="../src/gui/iconselectdialog.cpp" line="221"/>
+        <location filename="../src/gui/iconselectdialog.cpp" line="204"/>
         <source>Open Icon file</source>
         <translation>Otvori datoteku ikone</translation>
     </message>
     <message>
-        <location filename="../src/gui/iconselectdialog.cpp" line="222"/>
+        <location filename="../src/gui/iconselectdialog.cpp" line="205"/>
         <source>Image Files (*.png *.jpg *.jpeg *.bmp *.ico *.svg)</source>
         <translation>Slikovne datoteke (*.png *.jpg *.jpeg *.bmp *.ico *.svg)</translation>
     </message>
@@ -1762,7 +1798,7 @@ Postavi 0 za deaktiviranje prikaza.</translation>
         <translation type="vanished">Naredba za uređivač: %1</translation>
     </message>
     <message>
-        <location filename="../src/item/itemeditor.cpp" line="156"/>
+        <location filename="../src/item/itemeditor.cpp" line="139"/>
         <source>Editor command failed (see logs)</source>
         <translation>Naredba uređivača nije uspjela (pogledaj dnevnike)</translation>
     </message>
@@ -1843,114 +1879,118 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>ItemEncryptedLoader</name>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="357"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="403"/>
         <source>Encryption failed!</source>
         <translation>Šifriranje neuspjelo!</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="631"/>
         <source>To share encrypted items on other computer or session, you&apos;ll need public and secret key files:&lt;ul&gt;&lt;li&gt;%1&lt;/li&gt;&lt;li&gt;%2&lt;br /&gt;(Keep this secret key in a safe place.)&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>Za dijeljenje šifriranog elementa na drugom računalu ili primjerku programa, potrebne su javne i tajne datoteke ključeva:&lt;ul&gt;&lt;li&gt;%1&lt;/li&gt;&lt;li&gt;%2&lt;br /&gt;(Čuvaj ovaj tajni ključ na sigurnom mjestu.)&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation type="vanished">Za dijeljenje šifriranog elementa na drugom računalu ili primjerku programa, potrebne su javne i tajne datoteke ključeva:&lt;ul&gt;&lt;li&gt;%1&lt;/li&gt;&lt;li&gt;%2&lt;br /&gt;(Čuvaj ovaj tajni ključ na sigurnom mjestu.)&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="696"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="681"/>
+        <source>To share encrypted items on other computer or session, you&apos;ll need these secret key files (keep them in a safe place):</source>
+        <translation>Za dijeljenje šifriranih stavki na drugom računalu ili sesiji trebat ćete ove datoteke s tajnim ključem (čuvajte ih na sigurnom mjestu):</translation>
+    </message>
+    <message>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="756"/>
         <source>GnuPG must be installed to view encrypted tabs.</source>
         <translation>Za prikaz šifriranih kartica GnuPG mora biti instaliran.</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="801"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="861"/>
         <source>Encrypt (needs GnuPG)</source>
         <translation>Šifriraj (treba GnuPG)</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="807"/>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="818"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="867"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="878"/>
         <source>Ctrl+L</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="812"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="872"/>
         <source>Decrypt</source>
         <translation>Dešifriraj</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="823"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="883"/>
         <source>Decrypt and Copy</source>
         <translation>Dešifriraj i kopiraj</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="828"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="888"/>
         <source>Ctrl+Shift+L</source>
         <translation>Ctrl+Shift+L</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="833"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="893"/>
         <source>Decrypt and Paste</source>
         <translation>Dešifriraj i umetni</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="838"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="898"/>
         <source>Enter</source>
         <translation>Enter</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="895"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="955"/>
         <source>Failed to generate keys.</source>
         <translation>Neuspjelo generiranje ključeva.</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="907"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="967"/>
         <source>Error: %1</source>
         <translation>Greška: %1</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="912"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="972"/>
         <source>Done</source>
         <translation>Gotovo</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="928"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="988"/>
         <source>Creating new keys (this may take a few minutes)...</source>
         <translation>Stvaranje novih ključeva (ovo može potrajati par minuta) …</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="929"/>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="932"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="989"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="992"/>
         <source>Cancel</source>
         <translation>Prekini</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="931"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="991"/>
         <source>Setting new password...</source>
         <translation>Postavljanje nove lozinke …</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="934"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="994"/>
         <source>Encryption keys &lt;strong&gt;must be generated&lt;/strong&gt; before item encryption can be used.</source>
         <translation>Za šifriranje elemenata, najprije se&lt;strong&gt;moraju generirati&lt;/strong&gt; ključevi za šifriranje.</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="937"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="997"/>
         <source>Generate New Keys...</source>
         <translation>Generiraj nove ključeve …</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="939"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="999"/>
         <source>Change Password...</source>
         <translation>Promijeni lozinku …</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="945"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.cpp" line="1005"/>
         <source>Decryption failed!</source>
         <translation>Dešifriranje neuspjelo!</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.h" line="98"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.h" line="82"/>
         <source>Encryption</source>
         <translation>Šifriranje</translation>
     </message>
     <message>
-        <location filename="../plugins/itemencrypted/itemencrypted.h" line="100"/>
+        <location filename="../plugins/itemencrypted/itemencrypted.h" line="84"/>
         <source>Encrypt items and tabs.</source>
         <translation>Šifriraj elemente i kartice.</translation>
     </message>
@@ -1983,12 +2023,12 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>ItemFactory</name>
     <message>
-        <location filename="../src/item/itemfactory.cpp" line="91"/>
+        <location filename="../src/item/itemfactory.cpp" line="75"/>
         <source>Corrupted Tab</source>
         <translation>Oštećena kartica</translation>
     </message>
     <message>
-        <location filename="../src/item/itemfactory.cpp" line="92"/>
+        <location filename="../src/item/itemfactory.cpp" line="76"/>
         <source>Not all items in the tab &lt;strong&gt;%1&lt;/strong&gt; were loaded successfully. Do you still want to load the tab and potentially lose some items?</source>
         <translation>Sve stavke na kartici &lt;strong&gt;%1&lt;/strong&gt; nisu uspješno učitane. Želiš li i dalje učitati karticu i potencijalno izgubiti neke stavke?</translation>
     </message>
@@ -1996,17 +2036,17 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>ItemFakeVimLoader</name>
     <message>
-        <location filename="../plugins/itemfakevim/itemfakevim.h" line="42"/>
+        <location filename="../plugins/itemfakevim/itemfakevim.h" line="25"/>
         <source>FakeVim</source>
         <translation>FakeVim</translation>
     </message>
     <message>
-        <location filename="../plugins/itemfakevim/itemfakevim.h" line="44"/>
+        <location filename="../plugins/itemfakevim/itemfakevim.h" line="27"/>
         <source>FakeVim plugin is part of Qt Creator</source>
         <translation>Dodatak FakeVim je dio Qt Creatora</translation>
     </message>
     <message>
-        <location filename="../plugins/itemfakevim/itemfakevim.h" line="46"/>
+        <location filename="../plugins/itemfakevim/itemfakevim.h" line="29"/>
         <source>Emulate Vim editor while editing items.</source>
         <translation>Emuliraj Vim uređivač tijekom uređivanja elemenata.</translation>
     </message>
@@ -2027,12 +2067,12 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>ItemImageLoader</name>
     <message>
-        <location filename="../plugins/itemimage/itemimage.h" line="81"/>
+        <location filename="../plugins/itemimage/itemimage.h" line="65"/>
         <source>Images</source>
         <translation>Slike</translation>
     </message>
     <message>
-        <location filename="../plugins/itemimage/itemimage.h" line="83"/>
+        <location filename="../plugins/itemimage/itemimage.h" line="67"/>
         <source>Display images.</source>
         <translation>Prikaži slike.</translation>
     </message>
@@ -2083,12 +2123,12 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>ItemNotesLoader</name>
     <message>
-        <location filename="../plugins/itemnotes/itemnotes.h" line="79"/>
+        <location filename="../plugins/itemnotes/itemnotes.h" line="63"/>
         <source>Notes</source>
         <translation>Napomene</translation>
     </message>
     <message>
-        <location filename="../plugins/itemnotes/itemnotes.h" line="81"/>
+        <location filename="../plugins/itemnotes/itemnotes.h" line="65"/>
         <source>Display notes for items.</source>
         <translation>Prikaži napomene za elemente.</translation>
     </message>
@@ -2124,35 +2164,35 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>ItemOrderList</name>
     <message>
-        <location filename="../src/ui/itemorderlist.ui" line="53"/>
+        <location filename="../src/ui/itemorderlist.ui" line="59"/>
         <source>&amp;Add</source>
         <translation>Dod&amp;aj</translation>
     </message>
     <message>
-        <location filename="../src/ui/itemorderlist.ui" line="66"/>
+        <location filename="../src/ui/itemorderlist.ui" line="72"/>
         <source>&amp;Remove</source>
         <translation>&amp;Ukloni</translation>
     </message>
     <message>
-        <location filename="../src/ui/itemorderlist.ui" line="76"/>
+        <location filename="../src/ui/itemorderlist.ui" line="82"/>
         <source>Move up</source>
         <extracomment>Button moves current item one row up</extracomment>
         <translation>Pomakni gore</translation>
     </message>
     <message>
-        <location filename="../src/ui/itemorderlist.ui" line="86"/>
+        <location filename="../src/ui/itemorderlist.ui" line="92"/>
         <source>Move down</source>
         <extracomment>Button moves current item one row down</extracomment>
         <translation>Pomakni dolje</translation>
     </message>
     <message>
-        <location filename="../src/ui/itemorderlist.ui" line="96"/>
+        <location filename="../src/ui/itemorderlist.ui" line="102"/>
         <source>Move to the top</source>
         <extracomment>Button moves current item to the top</extracomment>
         <translation>Pomakni skroz gore</translation>
     </message>
     <message>
-        <location filename="../src/ui/itemorderlist.ui" line="106"/>
+        <location filename="../src/ui/itemorderlist.ui" line="112"/>
         <source>Move to the bottom</source>
         <extracomment>Button moves current item to the bottom</extracomment>
         <translation>Pomakni skroz dolje</translation>
@@ -2169,32 +2209,32 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>ItemPinnedLoader</name>
     <message>
-        <location filename="../plugins/itempinned/itempinned.cpp" line="199"/>
+        <location filename="../plugins/itempinned/itempinned.cpp" line="182"/>
         <source>Cannot Remove Pinned Items</source>
         <translation>Nije moguće ukloniti prikvačene elemente</translation>
     </message>
     <message>
-        <location filename="../plugins/itempinned/itempinned.cpp" line="200"/>
+        <location filename="../plugins/itempinned/itempinned.cpp" line="183"/>
         <source>Unpin items first to remove them.</source>
         <translation>Za uklanjanje elemenata najprije ih otkvači.</translation>
     </message>
     <message>
-        <location filename="../plugins/itempinned/itempinned.cpp" line="364"/>
+        <location filename="../plugins/itempinned/itempinned.cpp" line="347"/>
         <source>Pin</source>
         <translation>Prikvači</translation>
     </message>
     <message>
-        <location filename="../plugins/itempinned/itempinned.cpp" line="372"/>
+        <location filename="../plugins/itempinned/itempinned.cpp" line="355"/>
         <source>Unpin</source>
         <translation>Otkvači</translation>
     </message>
     <message>
-        <location filename="../plugins/itempinned/itempinned.h" line="98"/>
+        <location filename="../plugins/itempinned/itempinned.h" line="83"/>
         <source>Pinned Items</source>
         <translation>Prikvačeni elementi</translation>
     </message>
     <message>
-        <location filename="../plugins/itempinned/itempinned.h" line="101"/>
+        <location filename="../plugins/itempinned/itempinned.h" line="86"/>
         <source>&lt;p&gt;Pin items to lock them in current row and avoid deletion (unless unpinned).&lt;/p&gt;&lt;p&gt;Provides shortcuts and scripting functionality.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Prikvači elemente da bi se zaključali u trenutačnom retku i da bi se izbjeglo brisanje (osim ako nisu otkvačeni).&lt;/p&gt;&lt;p&gt;Omogućuje upotrebu prečaca i skriptanja.&lt;/p&gt;</translation>
     </message>
@@ -2202,28 +2242,28 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>ItemSyncLoader</name>
     <message>
-        <location filename="../plugins/itemsync/itemsync.cpp" line="127"/>
+        <location filename="../plugins/itemsync/itemsync.cpp" line="111"/>
         <source>Browse...</source>
         <comment>Button text for opening file dialog to select synchronization directory</comment>
         <translation>Pregledaj …</translation>
     </message>
     <message>
-        <location filename="../plugins/itemsync/itemsync.cpp" line="771"/>
+        <location filename="../plugins/itemsync/itemsync.cpp" line="762"/>
         <source>Open Directory for Synchronization</source>
         <translation>Otvori mapu za sinkronizaciju</translation>
     </message>
     <message>
-        <location filename="../plugins/itemsync/itemsync.cpp" line="785"/>
+        <location filename="../plugins/itemsync/itemsync.cpp" line="776"/>
         <source>Failed to create synchronization directory</source>
         <translation>Neuspjelo stvaranje mape za sinkronizaciju</translation>
     </message>
     <message>
-        <location filename="../plugins/itemsync/itemsync.h" line="136"/>
+        <location filename="../plugins/itemsync/itemsync.h" line="120"/>
         <source>Synchronize</source>
         <translation>Sinkroniziraj</translation>
     </message>
     <message>
-        <location filename="../plugins/itemsync/itemsync.h" line="138"/>
+        <location filename="../plugins/itemsync/itemsync.h" line="122"/>
         <source>Synchronize items and notes with a directory on disk.</source>
         <translation>Sinkroniziraj elemente i napomene s mapom na disku.</translation>
     </message>
@@ -2231,17 +2271,17 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>ItemSyncSaver</name>
     <message>
-        <location filename="../plugins/itemsync/itemsync.cpp" line="443"/>
+        <location filename="../plugins/itemsync/itemsync.cpp" line="427"/>
         <source>Failed to synchronize tab &quot;%1&quot; with directory &quot;%2&quot;!</source>
         <translation>Neuspjelo sinkroniziranje kartice „%1” s mapom „%2”!</translation>
     </message>
     <message>
-        <location filename="../plugins/itemsync/itemsync.cpp" line="478"/>
+        <location filename="../plugins/itemsync/itemsync.cpp" line="462"/>
         <source>Remove Items?</source>
         <translation>Ukloniti elemente?</translation>
     </message>
     <message>
-        <location filename="../plugins/itemsync/itemsync.cpp" line="479"/>
+        <location filename="../plugins/itemsync/itemsync.cpp" line="463"/>
         <source>Do you really want to &lt;strong&gt;remove items and associated files&lt;/strong&gt;?</source>
         <translation>Zaista želiš &lt;strong&gt;ukloniti elemente i povezane datoteke&lt;/strong&gt;?</translation>
     </message>
@@ -2296,53 +2336,56 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>ItemTagsLoader</name>
     <message>
-        <location filename="../plugins/itemtags/itemtags.cpp" line="162"/>
+        <location filename="../plugins/itemtags/itemtags.cpp" line="145"/>
         <source>Add a Tag</source>
         <translation>Dodaj oznaku</translation>
     </message>
     <message>
-        <location filename="../plugins/itemtags/itemtags.cpp" line="167"/>
+        <location filename="../plugins/itemtags/itemtags.cpp" line="150"/>
         <source>Remove a Tag</source>
         <translation>Ukloni oznaku</translation>
     </message>
     <message>
-        <location filename="../plugins/itemtags/itemtags.cpp" line="188"/>
         <source>Tag as %1</source>
-        <translation>Označi kao „%1”</translation>
+        <translation type="vanished">Označi kao „%1”</translation>
     </message>
     <message>
-        <location filename="../plugins/itemtags/itemtags.cpp" line="195"/>
         <source>Remove tag %1</source>
-        <translation>Ukloni oznaku „%1”</translation>
+        <translation type="vanished">Ukloni oznaku „%1”</translation>
     </message>
     <message>
-        <location filename="../plugins/itemtags/itemtags.cpp" line="628"/>
+        <location filename="../plugins/itemtags/itemtags.cpp" line="171"/>
+        <source>Toggle Tag %1</source>
+        <translation>Uključi/Isključi oznaku %1</translation>
+    </message>
+    <message>
+        <location filename="../plugins/itemtags/itemtags.cpp" line="605"/>
         <source>Cannot Remove Items With a Locked Tag</source>
         <translation>Nije moguće ukloniti elemente sa zaključanom oznakom</translation>
     </message>
     <message>
-        <location filename="../plugins/itemtags/itemtags.cpp" line="629"/>
+        <location filename="../plugins/itemtags/itemtags.cpp" line="606"/>
         <source>Untag items first to remove them.</source>
         <translation>Za uklanjanje elemenata najprije ih odznači.</translation>
     </message>
     <message>
-        <location filename="../plugins/itemtags/itemtags.cpp" line="765"/>
+        <location filename="../plugins/itemtags/itemtags.cpp" line="742"/>
         <source>Important</source>
         <comment>Tag name for example command</comment>
         <translation>Važno</translation>
     </message>
     <message>
-        <location filename="../plugins/itemtags/itemtags.cpp" line="789"/>
+        <location filename="../plugins/itemtags/itemtags.cpp" line="772"/>
         <source>Clear all tags</source>
         <translation>Ukloni sve oznake</translation>
     </message>
     <message>
-        <location filename="../plugins/itemtags/itemtags.h" line="128"/>
+        <location filename="../plugins/itemtags/itemtags.h" line="111"/>
         <source>Tags</source>
         <translation>Oznake</translation>
     </message>
     <message>
-        <location filename="../plugins/itemtags/itemtags.h" line="130"/>
+        <location filename="../plugins/itemtags/itemtags.h" line="113"/>
         <source>Display tags for items.</source>
         <translation>Prikaži oznake za elemente.</translation>
     </message>
@@ -2398,12 +2441,12 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>ItemTextLoader</name>
     <message>
-        <location filename="../plugins/itemtext/itemtext.h" line="80"/>
+        <location filename="../plugins/itemtext/itemtext.h" line="63"/>
         <source>Text</source>
         <translation>Tekst</translation>
     </message>
     <message>
-        <location filename="../plugins/itemtext/itemtext.h" line="82"/>
+        <location filename="../plugins/itemtext/itemtext.h" line="65"/>
         <source>Display plain text and simple HTML items.</source>
         <translation>Prikaži običan tekst i jednostavne HTML elemente.</translation>
     </message>
@@ -2460,150 +2503,148 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="343"/>
+        <location filename="../src/gui/mainwindow.cpp" line="286"/>
         <source>CopyQ Items (*.cpq)</source>
         <translation>CopyQ elementi (*.cpq)</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="672"/>
+        <location filename="../src/gui/mainwindow.cpp" line="648"/>
         <source>&amp;Show/Hide</source>
         <translation>Prikaž&amp;i/Sakrij</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="710"/>
+        <location filename="../src/gui/mainwindow.cpp" line="686"/>
         <source>Exit?</source>
         <translation>Zatvoriti?</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="711"/>
+        <location filename="../src/gui/mainwindow.cpp" line="687"/>
         <source>Do you want to &lt;strong&gt;exit&lt;/strong&gt; CopyQ?</source>
         <translation>Želiš li &lt;strong&gt;zatvoriti&lt;/strong&gt; CopyQ?</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="772"/>
+        <location filename="../src/gui/mainwindow.cpp" line="751"/>
         <source>&amp;File</source>
         <translation>&amp;Datoteka</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="820"/>
+        <location filename="../src/gui/mainwindow.cpp" line="797"/>
         <source>&amp;Edit</source>
         <translation>&amp;Uredi</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="844"/>
+        <location filename="../src/gui/mainwindow.cpp" line="821"/>
         <source>&amp;Item</source>
         <translation>&amp;Element</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="848"/>
+        <location filename="../src/gui/mainwindow.cpp" line="825"/>
         <source>&amp;Tabs</source>
         <translation>&amp;Kartice</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="873"/>
+        <location filename="../src/gui/mainwindow.cpp" line="850"/>
         <source>&amp;Help</source>
         <translation>&amp;Pomoć</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="898"/>
+        <location filename="../src/gui/mainwindow.cpp" line="875"/>
         <source>&amp;New Tab</source>
         <translation>&amp;Nova kartica</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="900"/>
+        <location filename="../src/gui/mainwindow.cpp" line="877"/>
         <source>Rename &amp;Group %1</source>
         <translation>Ukloni &amp;grupu „%1”</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="902"/>
+        <location filename="../src/gui/mainwindow.cpp" line="879"/>
         <source>Re&amp;name Tab %1</source>
         <translation>Preime&amp;nuj karticu „%1”</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="904"/>
+        <location filename="../src/gui/mainwindow.cpp" line="881"/>
         <source>Re&amp;move Tab %1</source>
         <translation>Ukl&amp;oni karticu „%1”</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="906"/>
+        <location filename="../src/gui/mainwindow.cpp" line="883"/>
         <source>Remove Group %1</source>
         <translation>Ukloni grupu „%1”</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="908"/>
+        <location filename="../src/gui/mainwindow.cpp" line="885"/>
         <source>&amp;Change Tab Icon</source>
         <translation>P&amp;romijeni ikonu kartice</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="951"/>
+        <location filename="../src/gui/mainwindow.cpp" line="928"/>
         <source>&amp;Clipboard: %1</source>
         <comment>Tray menu clipboard item format</comment>
         <translation>&amp;Međuspremnik: %1</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="1404"/>
         <source>&amp;Enable Clipboard Storing</source>
-        <translation>&amp;Aktiviraj spremanje međuspremnika</translation>
+        <translation type="vanished">&amp;Aktiviraj spremanje međuspremnika</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="1405"/>
         <source>&amp;Disable Clipboard Storing</source>
-        <translation>D&amp;eaktiviraj spremanje međuspremnika</translation>
+        <translation type="vanished">D&amp;eaktiviraj spremanje međuspremnika</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="2061"/>
-        <location filename="../src/gui/mainwindow.cpp" line="2183"/>
+        <location filename="../src/gui/mainwindow.cpp" line="2086"/>
+        <location filename="../src/gui/mainwindow.cpp" line="2208"/>
         <source>Options for Import</source>
         <translation>Opcije za uvoz</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="2432"/>
+        <location filename="../src/gui/mainwindow.cpp" line="2496"/>
         <source>CopyQ Error</source>
         <comment>Notification error message title</comment>
         <translation>CopyQ greška</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="3771"/>
+        <location filename="../src/gui/mainwindow.cpp" line="3863"/>
         <source>Options for Export</source>
         <translation>Opcije za izvoz</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="3792"/>
+        <location filename="../src/gui/mainwindow.cpp" line="3884"/>
         <source>Export Error</source>
         <translation>Greška izvoza</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="3793"/>
+        <location filename="../src/gui/mainwindow.cpp" line="3885"/>
         <source>Failed to export file %1!</source>
         <translation>Neuspio izvoz datoteke „%1”!</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="3885"/>
+        <location filename="../src/gui/mainwindow.cpp" line="3977"/>
         <source>Import Error</source>
         <translation>Greška uvoza</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="3886"/>
+        <location filename="../src/gui/mainwindow.cpp" line="3978"/>
         <source>Failed to import file %1!</source>
         <translation>Neuspio uvoz datoteke „%1”!</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="4071"/>
+        <location filename="../src/gui/mainwindow.cpp" line="4163"/>
         <source>Remove All Tabs in Group?</source>
         <translation>Ukloniti sve kartice iz grupe?</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="4072"/>
+        <location filename="../src/gui/mainwindow.cpp" line="4164"/>
         <source>Do you want to remove &lt;strong&gt;all tabs&lt;/strong&gt; in group &lt;strong&gt;%1&lt;/strong&gt;?</source>
         <translation>Želiš li ukloniti &lt;strong&gt;sve kartice&lt;/strong&gt; u grupi &lt;strong&gt;%1&lt;/strong&gt;?</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="4119"/>
+        <location filename="../src/gui/mainwindow.cpp" line="4211"/>
         <source>Remove Tab?</source>
         <translation>Ukloniti karticu?</translation>
     </message>
     <message>
-        <location filename="../src/gui/mainwindow.cpp" line="4120"/>
+        <location filename="../src/gui/mainwindow.cpp" line="4212"/>
         <source>Do you want to remove tab &lt;strong&gt;%1&lt;/strong&gt;?</source>
         <translation>Želiš li ukloniti karticu &lt;strong&gt;%1&lt;/strong&gt;?</translation>
     </message>
@@ -2611,7 +2652,7 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>Proxy</name>
     <message>
-        <location filename="../plugins/itemfakevim/itemfakevim.cpp" line="535"/>
+        <location filename="../plugins/itemfakevim/itemfakevim.cpp" line="519"/>
         <source>Information</source>
         <translation>Podaci</translation>
     </message>
@@ -2619,19 +2660,19 @@ Postavi 0 za deaktiviranje prikaza.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../src/common/appconfig.cpp" line="39"/>
+        <location filename="../src/common/appconfig.cpp" line="22"/>
         <source>&amp;clipboard</source>
         <comment>Default name of the tab that automatically stores new clipboard content</comment>
         <translation>&amp;međuspremnik</translation>
     </message>
     <message>
-        <location filename="../src/common/common.cpp" line="570"/>
+        <location filename="../src/common/common.cpp" line="600"/>
         <source>&lt;HIDDEN&gt;</source>
         <comment>Label for hidden/secret clipboard content</comment>
         <translation>&lt;SKRIVENO&gt;</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/common/common.cpp" line="576"/>
+        <location filename="../src/common/common.cpp" line="606"/>
         <source>%1 (%n lines)</source>
         <comment>Label for multi-line text in clipboard</comment>
         <translation>
@@ -2641,168 +2682,167 @@ Postavi 0 za deaktiviranje prikaza.</translation>
         </translation>
     </message>
     <message>
-        <location filename="../src/common/common.cpp" line="586"/>
+        <location filename="../src/common/common.cpp" line="616"/>
         <source>&lt;IMAGE&gt;</source>
         <comment>Label for image in clipboard</comment>
         <translation>&lt;SLIKA&gt;</translation>
     </message>
     <message>
-        <location filename="../src/common/common.cpp" line="588"/>
+        <location filename="../src/common/common.cpp" line="618"/>
         <source>&lt;ITEMS&gt;</source>
         <comment>Label for copied items in clipboard</comment>
         <translation>&lt;ELEMENTI&gt;</translation>
     </message>
     <message>
-        <location filename="../src/common/common.cpp" line="590"/>
+        <location filename="../src/common/common.cpp" line="620"/>
         <source>&lt;EMPTY&gt;</source>
         <comment>Label for empty clipboard</comment>
         <translation>&lt;PRAZNO&gt;</translation>
     </message>
     <message>
-        <location filename="../src/common/common.cpp" line="592"/>
+        <location filename="../src/common/common.cpp" line="622"/>
         <source>&lt;DATA&gt;</source>
         <comment>Label for data in clipboard</comment>
         <translation>&lt;PODACI&gt;</translation>
     </message>
     <message>
-        <location filename="../src/common/shortcuts.cpp" line="49"/>
+        <location filename="../src/common/shortcuts.cpp" line="32"/>
         <source>Backspace</source>
         <comment>Key to remove item or MIME on OS X</comment>
         <translation>Tipka Backspace</translation>
     </message>
     <message>
-        <location filename="../src/common/shortcuts.cpp" line="51"/>
+        <location filename="../src/common/shortcuts.cpp" line="34"/>
         <source>Delete</source>
         <comment>Key to remove item or MIME</comment>
         <translation>Tipka Delete</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="59"/>
+        <location filename="../src/gui/menuitems.cpp" line="42"/>
         <source>&amp;New Item</source>
         <translation>&amp;Novi element</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="61"/>
+        <location filename="../src/gui/menuitems.cpp" line="44"/>
         <source>&amp;Import...</source>
         <translation>U&amp;vezi …</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="61"/>
+        <location filename="../src/gui/menuitems.cpp" line="44"/>
         <source>Ctrl+I</source>
         <translation>Ctrl+I</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="63"/>
+        <location filename="../src/gui/menuitems.cpp" line="46"/>
         <source>&amp;Export...</source>
         <translation>&amp;Izvezi …</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="65"/>
+        <location filename="../src/gui/menuitems.cpp" line="48"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Postavke …</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="65"/>
+        <location filename="../src/gui/menuitems.cpp" line="48"/>
         <source>Ctrl+P</source>
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="69"/>
         <source>C&amp;ommands/Global Shortcuts...</source>
-        <translation>Nared&amp;be/Globalni prečaci …</translation>
+        <translation type="vanished">Nared&amp;be/Globalni prečaci …</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="71"/>
+        <location filename="../src/gui/menuitems.cpp" line="51"/>
         <source>C&amp;ommands...</source>
         <translation>Nared&amp;be …</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="73"/>
+        <location filename="../src/gui/menuitems.cpp" line="52"/>
         <source>F6</source>
         <translation>F6</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="75"/>
+        <location filename="../src/gui/menuitems.cpp" line="54"/>
         <source>Show &amp;Clipboard Content</source>
         <translation>Prikaži sadržaj &amp;međuspremnika</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="76"/>
+        <location filename="../src/gui/menuitems.cpp" line="55"/>
         <source>Ctrl+Shift+C</source>
         <translation>Ctrl+Shift+C</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="77"/>
+        <location filename="../src/gui/menuitems.cpp" line="56"/>
         <source>&amp;Show Preview</source>
         <translation>Prikaži &amp;pretprikaz</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="78"/>
+        <location filename="../src/gui/menuitems.cpp" line="57"/>
         <source>F7</source>
         <translation>F7</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="79"/>
+        <location filename="../src/gui/menuitems.cpp" line="58"/>
         <source>&amp;Toggle Clipboard Storing</source>
         <translation>&amp;Uklj/Isklj spremanje međuspremnika</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="80"/>
+        <location filename="../src/gui/menuitems.cpp" line="59"/>
         <source>Ctrl+Shift+X</source>
         <translation>Ctrl+Shift+X</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="81"/>
+        <location filename="../src/gui/menuitems.cpp" line="60"/>
         <source>P&amp;rocess Manager</source>
         <translation>Upravljač p&amp;rocesa</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="82"/>
+        <location filename="../src/gui/menuitems.cpp" line="61"/>
         <source>Ctrl+Shift+Z</source>
         <translation>Ctrl+Shift+Z</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="83"/>
+        <location filename="../src/gui/menuitems.cpp" line="62"/>
         <source>E&amp;xit</source>
         <translation>&amp;Zatvori</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="83"/>
+        <location filename="../src/gui/menuitems.cpp" line="62"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="86"/>
+        <location filename="../src/gui/menuitems.cpp" line="65"/>
         <source>&amp;Sort Selected Items</source>
         <translation>&amp;Razvrstaj odabrane elemente</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="87"/>
+        <location filename="../src/gui/menuitems.cpp" line="66"/>
         <source>Ctrl+Shift+S</source>
         <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="89"/>
+        <location filename="../src/gui/menuitems.cpp" line="68"/>
         <source>&amp;Reverse Selected Items</source>
         <translation>&amp;Obrni redoslijed odabranih elemenata</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="90"/>
+        <location filename="../src/gui/menuitems.cpp" line="69"/>
         <source>Ctrl+Shift+R</source>
         <translation>Ctrl+Shift+R</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="92"/>
+        <location filename="../src/gui/menuitems.cpp" line="71"/>
         <source>&amp;Paste Items</source>
         <translation>&amp;Umetni elemente</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="94"/>
+        <location filename="../src/gui/menuitems.cpp" line="73"/>
         <source>&amp;Copy Selected Items</source>
         <translation>&amp;Kopiraj odabrane elemente</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="96"/>
+        <location filename="../src/gui/menuitems.cpp" line="75"/>
         <source>&amp;Find</source>
         <translation>N&amp;ađi</translation>
     </message>
@@ -2812,43 +2852,43 @@ Postavi 0 za deaktiviranje prikaza.</translation>
         <translation type="vanished">Premjesti u &amp;međuspremnik</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="127"/>
+        <location filename="../src/gui/menuitems.cpp" line="106"/>
         <source>A&amp;ctivate Items</source>
         <comment>copies selected items to clipboard and moves them to top (depending on settings)</comment>
         <translation>A&amp;ktivitaj elemente</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="130"/>
+        <location filename="../src/gui/menuitems.cpp" line="109"/>
         <source>&amp;Show Content...</source>
         <translation>Prikaži &amp;sadržaj …</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="131"/>
+        <location filename="../src/gui/menuitems.cpp" line="110"/>
         <source>F4</source>
         <translation>F4</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="132"/>
+        <location filename="../src/gui/menuitems.cpp" line="111"/>
         <source>&amp;Remove</source>
         <translation>U&amp;kloni</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="134"/>
+        <location filename="../src/gui/menuitems.cpp" line="113"/>
         <source>&amp;Edit</source>
         <translation>&amp;Uredi</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="134"/>
+        <location filename="../src/gui/menuitems.cpp" line="113"/>
         <source>F2</source>
         <translation>F2</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="136"/>
+        <location filename="../src/gui/menuitems.cpp" line="115"/>
         <source>Edit &amp;Notes</source>
         <translation>Uredi &amp;napomene</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="137"/>
+        <location filename="../src/gui/menuitems.cpp" line="116"/>
         <source>Shift+F2</source>
         <translation>Shift+F2</translation>
     </message>
@@ -2857,242 +2897,242 @@ Postavi 0 za deaktiviranje prikaza.</translation>
         <translation type="vanished">Ure&amp;di s uređivačem</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="99"/>
+        <location filename="../src/gui/menuitems.cpp" line="78"/>
         <source>Save Item</source>
         <translation>Spremi element</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="100"/>
+        <location filename="../src/gui/menuitems.cpp" line="79"/>
         <source>F2</source>
         <comment>Shortcut to save item editor changes</comment>
         <translation>F2</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="101"/>
+        <location filename="../src/gui/menuitems.cpp" line="80"/>
         <source>Cancel Editing</source>
         <translation>Prekini uređivanje</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="102"/>
+        <location filename="../src/gui/menuitems.cpp" line="81"/>
         <source>Escape</source>
         <comment>Shortcut to revert item editor changes</comment>
         <translation>Escape</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="103"/>
+        <location filename="../src/gui/menuitems.cpp" line="82"/>
         <source>Undo</source>
         <translation>Poništi</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="105"/>
+        <location filename="../src/gui/menuitems.cpp" line="84"/>
         <source>Redo</source>
         <translation>Ponovi</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="107"/>
+        <location filename="../src/gui/menuitems.cpp" line="86"/>
         <source>Font</source>
         <translation>Font</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="109"/>
+        <location filename="../src/gui/menuitems.cpp" line="88"/>
         <source>Bold</source>
         <translation>Podebljano</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="111"/>
+        <location filename="../src/gui/menuitems.cpp" line="90"/>
         <source>Italic</source>
         <translation>Kurziv</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="113"/>
+        <location filename="../src/gui/menuitems.cpp" line="92"/>
         <source>Underline</source>
         <translation>Podcrtano</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="115"/>
+        <location filename="../src/gui/menuitems.cpp" line="94"/>
         <source>Strikethrough</source>
         <translation>Precrtano</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="117"/>
+        <location filename="../src/gui/menuitems.cpp" line="96"/>
         <source>Foreground</source>
         <translation>Prednja boja</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="119"/>
+        <location filename="../src/gui/menuitems.cpp" line="98"/>
         <source>Background</source>
         <translation>Stražnja boja</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="121"/>
+        <location filename="../src/gui/menuitems.cpp" line="100"/>
         <source>Erase Style</source>
         <translation>Izbriši stil</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="123"/>
+        <location filename="../src/gui/menuitems.cpp" line="102"/>
         <source>Search</source>
         <translation>Pretraga</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="138"/>
+        <location filename="../src/gui/menuitems.cpp" line="117"/>
         <source>E&amp;dit with Editor</source>
         <translation>Ure&amp;di s uređivačem</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="139"/>
+        <location filename="../src/gui/menuitems.cpp" line="118"/>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="140"/>
+        <location filename="../src/gui/menuitems.cpp" line="119"/>
         <source>&amp;Action...</source>
         <translation>&amp;Radnja …</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="140"/>
+        <location filename="../src/gui/menuitems.cpp" line="119"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="143"/>
+        <location filename="../src/gui/menuitems.cpp" line="122"/>
         <source>Move Up</source>
         <translation>Premjesti prema gore</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="144"/>
+        <location filename="../src/gui/menuitems.cpp" line="123"/>
         <source>Ctrl+Up</source>
         <translation>Ctrl+Gore</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="145"/>
+        <location filename="../src/gui/menuitems.cpp" line="124"/>
         <source>Move Down</source>
         <translation>Premjesti prema dolje</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="146"/>
+        <location filename="../src/gui/menuitems.cpp" line="125"/>
         <source>Ctrl+Down</source>
         <translation>Ctrl+Dolje</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="147"/>
+        <location filename="../src/gui/menuitems.cpp" line="126"/>
         <source>Move to Top</source>
         <translation>Premjesti na vrh</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="148"/>
+        <location filename="../src/gui/menuitems.cpp" line="127"/>
         <source>Ctrl+Home</source>
         <translation>Ctrl+Početak</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="149"/>
+        <location filename="../src/gui/menuitems.cpp" line="128"/>
         <source>Move to Bottom</source>
         <translation>Premjesti na kraj</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="150"/>
+        <location filename="../src/gui/menuitems.cpp" line="129"/>
         <source>Ctrl+End</source>
         <translation>Ctrl+Kraj</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="152"/>
+        <location filename="../src/gui/menuitems.cpp" line="131"/>
         <source>&amp;New Tab</source>
         <translation>&amp;Nova kartica</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="153"/>
+        <location filename="../src/gui/menuitems.cpp" line="132"/>
         <source>Ctrl+T</source>
         <translation>Ctrl+T</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="154"/>
+        <location filename="../src/gui/menuitems.cpp" line="133"/>
         <source>R&amp;ename Tab</source>
         <translation>Pr&amp;eimenuj karticu</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="155"/>
+        <location filename="../src/gui/menuitems.cpp" line="134"/>
         <source>Ctrl+F2</source>
         <translation>Ctrl+F2</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="156"/>
+        <location filename="../src/gui/menuitems.cpp" line="135"/>
         <source>Re&amp;move Tab</source>
         <translation>U&amp;kloni karticu</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="157"/>
+        <location filename="../src/gui/menuitems.cpp" line="136"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="158"/>
+        <location filename="../src/gui/menuitems.cpp" line="137"/>
         <source>&amp;Change Tab Icon</source>
         <translation>Pro&amp;mijeni ikonu kartice</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="159"/>
+        <location filename="../src/gui/menuitems.cpp" line="138"/>
         <source>Ctrl+Shift+T</source>
         <translation>Ctrl+Shift+T</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="160"/>
+        <location filename="../src/gui/menuitems.cpp" line="139"/>
         <source>Ne&amp;xt Tab</source>
         <translation>S&amp;ljedeća kartica</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="161"/>
+        <location filename="../src/gui/menuitems.cpp" line="140"/>
         <source>Right</source>
         <comment>Default shortcut to focus next tab</comment>
         <translation>Desno</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="163"/>
+        <location filename="../src/gui/menuitems.cpp" line="142"/>
         <source>&amp;Previous Tab</source>
         <translation>Pret&amp;hodna kartica</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="164"/>
+        <location filename="../src/gui/menuitems.cpp" line="143"/>
         <source>Left</source>
         <comment>Default shortcut to focus previous tab</comment>
         <translation>Lijevo</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="167"/>
+        <location filename="../src/gui/menuitems.cpp" line="146"/>
         <source>&amp;Help</source>
         <translation>&amp;Pomoć</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="169"/>
+        <location filename="../src/gui/menuitems.cpp" line="148"/>
         <source>&amp;Show Log</source>
         <translation>&amp;Prikaži log-zapis</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="169"/>
+        <location filename="../src/gui/menuitems.cpp" line="148"/>
         <source>F12</source>
         <translation>F12</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="171"/>
+        <location filename="../src/gui/menuitems.cpp" line="150"/>
         <source>&amp;About</source>
         <translation>In&amp;formacije</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="174"/>
+        <location filename="../src/gui/menuitems.cpp" line="153"/>
         <source>Open Item Context Menu</source>
         <translation>Otvori kontekstni izbornik elementa</translation>
     </message>
     <message>
-        <location filename="../src/gui/menuitems.cpp" line="175"/>
+        <location filename="../src/gui/menuitems.cpp" line="154"/>
         <source>Shift+F10</source>
         <comment>Default shortcut to open item context menu</comment>
         <translation>Shift+F10</translation>
     </message>
     <message>
-        <location filename="../src/item/itemfactory.cpp" line="442"/>
+        <location filename="../src/item/itemfactory.cpp" line="437"/>
         <source>Tab %1 is corrupted or some CopyQ plugins are missing!</source>
         <translation>Kartica „%1” je pokvarena ili neki CopyQ dodaci nedostaju!</translation>
     </message>
     <message>
-        <location filename="../src/main.cpp" line="238"/>
+        <location filename="../src/main.cpp" line="227"/>
         <source>Session name must contain at most 16 characters
 which can be letters, digits, &apos;-&apos; or &apos;_&apos;!</source>
         <translation>Ime sesije smije sadržavati najviše 16 znakova.
@@ -3113,7 +3153,7 @@ Dopušteni znakovi su slova, znamenke, crtica ili trotočka!</translation>
         <translation type="vanished">%1</translation>
     </message>
     <message numerus="yes">
-        <location filename="../src/scriptable/scriptableproxy.cpp" line="2454"/>
+        <location filename="../src/scriptable/scriptableproxy.cpp" line="2450"/>
         <source>Text Copied (%n lines)</source>
         <comment>Notification title for multi-line text in clipboard</comment>
         <translation>
@@ -3123,13 +3163,13 @@ Dopušteni znakovi su slova, znamenke, crtica ili trotočka!</translation>
         </translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptableproxy.cpp" line="2457"/>
+        <location filename="../src/scriptable/scriptableproxy.cpp" line="2453"/>
         <source>Text Copied</source>
         <comment>Notification title for single-line text in clipboard</comment>
         <translation>Kopirani tekst</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptableproxy.cpp" line="2473"/>
+        <location filename="../src/scriptable/scriptableproxy.cpp" line="2469"/>
         <source>Data Copied</source>
         <comment>Notification title for a copied data in clipboard</comment>
         <translation>Kopirani podaci</translation>
@@ -3138,226 +3178,226 @@ Dopušteni znakovi su slova, znamenke, crtica ili trotočka!</translation>
 <context>
     <name>Scriptable</name>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="71"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="54"/>
         <source>Show main window and optionally open tab with given name.</source>
         <translation>Prikaži glavni prozor i opcionalno otvori karticu sa zadanim imenom.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="72"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="161"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="165"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="168"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="55"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="144"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="148"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="151"/>
         <source>NAME</source>
         <translation>NAZIV</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="74"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="57"/>
         <source>Hide main window.</source>
         <translation>Sakrij glavni prozor.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="76"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="59"/>
         <source>Show or hide main window.</source>
         <translation>Prikaži ili sakrij glavni prozor.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="78"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="61"/>
         <source>Open context menu.</source>
         <translation>Otvori kontekstni izbornik.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="80"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="63"/>
         <source>Exit server.</source>
         <translation>Zatvori poslužitelja.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="82"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="65"/>
         <source>Disable or enable clipboard content storing.</source>
         <translation>Aktiviraj ili deaktiviraj spremanje sadržaja međuspremnika.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="85"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="68"/>
         <source>Print clipboard content.</source>
         <translation>Ispiši sadržaj međuspremnika.</translation>
     </message>
     <message>
+        <location filename="../src/scriptable/commandhelp.cpp" line="69"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="73"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="84"/>
         <location filename="../src/scriptable/commandhelp.cpp" line="86"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="90"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="101"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="103"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="134"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="137"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="139"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="117"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="120"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="122"/>
         <source>MIME</source>
         <translation>MIME</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="89"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="72"/>
         <source>Print X11 selection content.</source>
         <translation>Ispiši sadržaj X11 odabira.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="93"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="76"/>
         <source>Paste clipboard to current window
 (may not work with some applications).</source>
         <translation>Umetni međuspremnik u trenutačni prozor
 (možda neće raditi s nekim programima).</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="96"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="79"/>
         <source>Copy clipboard from current window
 (may not work with some applications).</source>
         <translation>Kopiraj međuspremnik iz trenutačnog prozora
 (možda neće raditi s nekim programima).</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="98"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="81"/>
         <source>Set clipboard text.</source>
         <translation>Postavi tekst međuspremnika.</translation>
     </message>
     <message>
+        <location filename="../src/scriptable/commandhelp.cpp" line="82"/>
         <location filename="../src/scriptable/commandhelp.cpp" line="99"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="116"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="120"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="103"/>
         <source>TEXT</source>
         <translation>TEKST</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="100"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="83"/>
         <source>Set clipboard content.</source>
         <translation>Postavi sadržaj međuspremnika.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="102"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="103"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="138"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="139"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="85"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="86"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="121"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="122"/>
         <source>DATA</source>
         <translation>PODACI</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="106"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="89"/>
         <source>Print amount of items in current tab.</source>
         <translation>Ispiši količinu elemenata u trenutačnoj kartici.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="108"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="91"/>
         <source>Copy item in the row to clipboard.</source>
         <translation>Kopiraj element u retku u međuspremnik.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="109"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="92"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="102"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="110"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="117"/>
         <location filename="../src/scriptable/commandhelp.cpp" line="119"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="127"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="134"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="136"/>
         <source>ROW</source>
         <translation>REDAK</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="111"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="94"/>
         <source>Copy next item from current tab to clipboard.</source>
         <translation>Kopiraj sljedeći element trenutačne kartice u međuspremnik.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="113"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="96"/>
         <source>Copy previous item from current tab to clipboard.</source>
         <translation>Kopiraj prethodni element trenutačne kartice u međuspremnik.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="115"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="98"/>
         <source>Add text into clipboard.</source>
         <translation>Dodaj tekst u međuspremnik.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="118"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="101"/>
         <source>Insert text into given row.</source>
         <translation>Umetni tekst u zadani redak.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="122"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="105"/>
         <source>Remove items in given rows.</source>
         <translation>Ukloni elemente u zadanim redcima.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="123"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="143"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="147"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="106"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="126"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="130"/>
         <source>ROWS</source>
         <translation>REDCI</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="125"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="108"/>
         <source>Edit items or edit new one.
 Value -1 is for current text in clipboard.</source>
         <translation>Uredi elemente ili uredi novi element.
 Vrijednost -1 odnosi se na trenutačni tekst u međuspremniku.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="130"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="113"/>
         <source>Set separator for items on output.</source>
         <translation>Postavi znak razdvajanja za elemente pri izradi razultata.</translation>
     </message>
     <message>
+        <location filename="../src/scriptable/commandhelp.cpp" line="114"/>
         <location filename="../src/scriptable/commandhelp.cpp" line="131"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="148"/>
         <source>SEPARATOR</source>
         <translation>ZNAK RAZDVAJANJA</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="133"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="116"/>
         <source>Print raw data of clipboard or item in row.</source>
         <translation>Ispiši neformatirane podatke međuspremnika ili elementa redom.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="135"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="118"/>
         <source>Write raw data to given row.</source>
         <translation>Zapiši neformatirane podatke u zadani redak.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="142"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="125"/>
         <source>Show action dialog.</source>
         <translation>Prikaži dijalog radnje.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="145"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="128"/>
         <source>Run PROGRAM on item text in the rows.
 Use %1 in PROGRAM to pass text as argument.</source>
         <translation>Pokreni PROGRAM na tekstu elementa u redcima.
 Koristi „%1” u PROGRAMU za proslijeđivanje teksta kao argument.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="148"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="131"/>
         <source>PROGRAM</source>
         <translation>PROGRAM</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="150"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="133"/>
         <source>Show tray popup message for TIME milliseconds.</source>
         <translation>Prikaži skočnu poruku programske trake za VRIJEME u milisekundama.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="151"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="134"/>
         <source>TITLE</source>
         <translation>NASLOV</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="152"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="135"/>
         <source>MESSAGE</source>
         <translation>PORUKA</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="153"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="136"/>
         <source>TIME</source>
         <translation>VRIJEME</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="156"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="139"/>
         <source>List available tab names.</source>
         <translation>Nabroji dostupna imena kartica.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="158"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="141"/>
         <source>Run command on tab with given name.
 Tab is created if it doesn&apos;t exist.
 Default is the first tab.</source>
@@ -3366,202 +3406,202 @@ Kartica će se stvoriti, ako ne postoji.
 Standardno se koristi prva kartica.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="162"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="196"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="205"/>
-        <location filename="../src/scriptable/scriptable.cpp" line="125"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="145"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="179"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="188"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="111"/>
         <source>COMMAND</source>
         <translation>NAREDBA</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="164"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="147"/>
         <source>Remove tab.</source>
         <translation>Ukloni karticu.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="167"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="150"/>
         <source>Rename tab.</source>
         <translation>Preimenuj karticu.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="169"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="152"/>
         <source>NEW_NAME</source>
         <translation>NOVO_IME</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="172"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="155"/>
         <source>Export items to file.</source>
         <translation>Izvezi elemente u datoteku.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="173"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="176"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="156"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="159"/>
         <source>FILE_NAME</source>
         <translation>IME_DATOTEKE</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="175"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="158"/>
         <source>Import items from file.</source>
         <translation>Uvezi elemente iz datoteke.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="179"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="162"/>
         <source>List all options.</source>
         <translation>Nabroji sve opcije.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="181"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="164"/>
         <source>Get option value.</source>
         <translation>Iščitaj vrijednost opcije.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="182"/>
-        <location filename="../src/scriptable/commandhelp.cpp" line="185"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="165"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="168"/>
         <source>OPTION</source>
         <translation>OPCIJA</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="184"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="167"/>
         <source>Set option value.</source>
         <translation>Postavi vrijednost opcije.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="186"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="169"/>
         <source>VALUE</source>
         <translation>VRIJEDNOST</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="188"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="171"/>
         <source>Evaluate script.</source>
         <translation>Evaluiraj skript.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="189"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="172"/>
         <source>SCRIPT</source>
         <translation>SKRIPTA</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="190"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="173"/>
         <source>ARGUMENTS</source>
         <translation>ARGUMENTI</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="192"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="175"/>
         <source>Starts or connects to application instance with given session name.</source>
         <translation>Pokreće ili povezuje primjerak programa sa zadanim imenom sesije.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="193"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="176"/>
         <source>SESSION</source>
         <translation>SESIJA</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="195"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="178"/>
         <source>Print help for COMMAND or all commands.</source>
         <translation>Ispiši pomoć za NAREDBU ili sve naredbe.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="198"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="181"/>
         <source>Print version of program and libraries.</source>
         <translation>Ispiši verziju programa i biblioteka.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="201"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="184"/>
         <source>Run application tests (append --help argument for more info).</source>
         <translation>Pokreni testove programa (dodaj argument --help za dobivanje više informacija).</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/commandhelp.cpp" line="204"/>
+        <location filename="../src/scriptable/commandhelp.cpp" line="187"/>
         <source>Start server in background before running a command.</source>
         <translation>Pokreni poslužitelja u pozadini prije pokretanja naredbe.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="125"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="111"/>
         <source>Usage: copyq [%1]</source>
         <translation>Upotreba: copyq [%1]</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="126"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="112"/>
         <source>Starts server if no command is specified.</source>
         <translation>Pokreće poslužitelja, ako nijedna naredba nije određena.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="127"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="113"/>
         <source>  COMMANDs:</source>
         <translation>  NAREDBE:</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="132"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="118"/>
         <source>NOTES:</source>
         <translation>NAPOMENE:</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="133"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="119"/>
         <source>  - Use dash argument (-) to read data from standard input.</source>
         <translation>  - Koristi argument (-) za čitanje podataka iz standardnog unosa.</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="134"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="120"/>
         <source>  - Use double-dash argument (--) to read all following arguments without
     expanding escape sequences (i.e. \n, \t and others).</source>
         <translation>  - Koristi argument s dvije crtice (--) za čitanje sljedećih argumenata, bez
     širenja izlaznog niza (kao što su \n, \t i ostali).</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="136"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="122"/>
         <source>  - Use ? for MIME to print available MIME types (default is &quot;text/plain&quot;).</source>
         <translation>  - Koristi upitnik (?) za MIME za ispis dostupnih MIME vrsta (standardno je „text/plain”).</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="141"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="127"/>
         <source>Invalid number of arguments!</source>
         <translation>Neispravan broj argumenata!</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="855"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="575"/>
         <source>Cannot save to file &quot;%1&quot;!</source>
         <translation>Nije moguće spremiti datoteku „%1”!</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="860"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="580"/>
         <source>Cannot import file &quot;%1&quot;!</source>
         <translation>Nije moguće uvesti datoteku „%1”!</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="942"/>
-        <location filename="../src/scriptable/scriptable.cpp" line="977"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="717"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="752"/>
         <source>CopyQ Clipboard Manager</source>
         <translation>CopyQ upravljač međuspremnika</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="989"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="764"/>
         <source>Command not found!</source>
         <translation>Naredba nije pronađena!</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="1088"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="863"/>
         <source>Terminating server.
 </source>
         <translation>Poslužitelj se prekida.
 </translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="1608"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="1396"/>
         <source>Invalid option &quot;%1&quot;!</source>
         <translation>Neispravna opcija „%1”!</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="3056"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="2909"/>
         <source>Exception</source>
         <translation>Iznimka</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="3057"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="2910"/>
         <source>Exception in %1</source>
         <translation>Iznimka u %1</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptable.cpp" line="3161"/>
+        <location filename="../src/scriptable/scriptable.cpp" line="3014"/>
         <source>Failed to copy to clipboard!</source>
         <translation>Neuspjelo kopiranje u međuspremnik!</translation>
     </message>
@@ -3569,12 +3609,12 @@ Standardno se koristi prva kartica.</translation>
 <context>
     <name>ScriptableProxy</name>
     <message>
-        <location filename="../src/scriptable/scriptableproxy.cpp" line="617"/>
+        <location filename="../src/scriptable/scriptableproxy.cpp" line="619"/>
         <source>Tab with given name doesn&apos;t exist!</source>
         <translation>Kartica sa zadanim imenom ne postoji!</translation>
     </message>
     <message>
-        <location filename="../src/scriptable/scriptableproxy.cpp" line="622"/>
+        <location filename="../src/scriptable/scriptableproxy.cpp" line="624"/>
         <source>Tab name cannot be empty!</source>
         <translation>Ime kartice ne može biti prazno!</translation>
     </message>
@@ -3583,11 +3623,17 @@ Standardno se koristi prva kartica.</translation>
         <source>Tab with given name already exists!</source>
         <translation>Kartica sa zadanim imenom već postoji!</translation>
     </message>
+    <message>
+        <location filename="../src/scriptable/scriptableproxy.cpp" line="2388"/>
+        <source>*Clipboard Storing Disabled*</source>
+        <comment>Main window title if clipboard storing is disabled</comment>
+        <translation>*Spremanje međuspremnika onemogućeno*</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutButton</name>
     <message>
-        <location filename="../src/gui/shortcutbutton.cpp" line="44"/>
+        <location filename="../src/gui/shortcutbutton.cpp" line="27"/>
         <source>Add shortcut</source>
         <translation>Dodaj prečac</translation>
     </message>
@@ -3600,17 +3646,15 @@ Standardno se koristi prva kartica.</translation>
         <translation>Novi prečac</translation>
     </message>
     <message>
-        <location filename="../src/ui/shortcutdialog.ui" line="20"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Press any key combination. &lt;span style=&quot; font-weight:600;&quot;&gt;Escape&lt;/span&gt; to cancel.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pritisni bilo koju tipkovničku kombinaciju. Tipka &lt;span style=&quot; font-weight:600;&quot;&gt;Escape&lt;/span&gt; za prekid.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pritisni bilo koju tipkovničku kombinaciju. Tipka &lt;span style=&quot; font-weight:600;&quot;&gt;Escape&lt;/span&gt; za prekid.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/ui/shortcutdialog.ui" line="33"/>
         <source>Click here and press any key combination</source>
-        <translation>Ovdje pritisni mišem, zatim pritisni bilo koju tipkovničku kombinaciju</translation>
+        <translation type="vanished">Ovdje pritisni mišem, zatim pritisni bilo koju tipkovničku kombinaciju</translation>
     </message>
     <message>
-        <location filename="../src/gui/shortcutdialog.cpp" line="64"/>
+        <location filename="../src/gui/shortcutdialog.cpp" line="22"/>
         <source>Remove Shortcut</source>
         <translation>Ukloni prečac</translation>
     </message>
@@ -3643,7 +3687,7 @@ Standardno se koristi prva kartica.</translation>
         <translation>Prečaci programa mogu se koristiti samo iz glavnog prozora.</translation>
     </message>
     <message>
-        <location filename="../src/gui/shortcutswidget.cpp" line="246"/>
+        <location filename="../src/gui/shortcutswidget.cpp" line="229"/>
         <source>Shortcut already exists!</source>
         <translation>Prečac već postoji!</translation>
     </message>
@@ -3665,17 +3709,17 @@ Koristi &lt;b&gt;/&lt;/b&gt; kao znak razdvajanja staza u stablastom prikazu kar
         <translation>&amp;Naziv:</translation>
     </message>
     <message>
-        <location filename="../src/gui/tabdialog.cpp" line="34"/>
+        <location filename="../src/gui/tabdialog.cpp" line="17"/>
         <source>New Tab</source>
         <translation>Nova kartica</translation>
     </message>
     <message>
-        <location filename="../src/gui/tabdialog.cpp" line="37"/>
+        <location filename="../src/gui/tabdialog.cpp" line="20"/>
         <source>Rename Tab</source>
         <translation>Preimenuj karticu</translation>
     </message>
     <message>
-        <location filename="../src/gui/tabdialog.cpp" line="40"/>
+        <location filename="../src/gui/tabdialog.cpp" line="23"/>
         <source>Rename Tab Group</source>
         <translation>Preimenuj grupu kartica</translation>
     </message>
@@ -3701,17 +3745,17 @@ Koristi &lt;b&gt;/&lt;/b&gt; kao znak razdvajanja staza u stablastom prikazu kar
 <context>
     <name>TrayMenu</name>
     <message>
-        <location filename="../src/gui/traymenu.cpp" line="89"/>
+        <location filename="../src/gui/traymenu.cpp" line="109"/>
         <source>Press &apos;/&apos; to search</source>
         <translation>Pritisni „/” za pretragu</translation>
     </message>
     <message>
-        <location filename="../src/gui/traymenu.cpp" line="89"/>
+        <location filename="../src/gui/traymenu.cpp" line="111"/>
         <source>Type to search</source>
         <translation>Upiši za pretragu</translation>
     </message>
     <message>
-        <location filename="../src/gui/traymenu.cpp" line="103"/>
+        <location filename="../src/gui/traymenu.cpp" line="127"/>
         <source>&amp;%1. %2</source>
         <comment>Key hint (number shortcut) for items in tray menu (%1 is number, %2 is item label)</comment>
         <translation>&amp;%1. %2</translation>
