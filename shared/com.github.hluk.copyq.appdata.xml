@@ -26,6 +26,9 @@
     <url type="translate">https://hosted.weblate.org/engage/copyq/</url>
 
     <releases>
+        <release version="9.1.0" date="2024-10-20" />
+        <release version="9.0.0" date="2024-06-22" />
+        <release version="8.0.0" date="2024-03-14" />
         <release version="7.1.0" date="2023-09-03" />
         <release version="7.0.0" date="2023-04-02" />
         <release version="6.4.0" date="2023-01-19" />
@@ -89,4 +92,11 @@
     <developer_name>Lukas Holecek</developer_name>
 
     <content_rating type="oars-1.0" />
+
+    <launchable type="desktop-id">com.github.hluk.copyq.desktop</launchable>
+
+    <branding>
+        <color type="primary" scheme_preference="light">#91e9b2</color>
+        <color type="primary" scheme_preference="dark">#36724d</color>
+    </branding>
 </component>

@@ -5,6 +5,7 @@
 
 #include "common/clipboardmode.h"
 #include "common/command.h"
+#include "common/navigationstyle.h"
 #include "gui/clipboardbrowsershared.h"
 #include "gui/menuitems.h"
 #include "item/persistentdisplayitem.h"
@@ -34,7 +35,6 @@ class Theme;
 class TrayMenu;
 class ToolBar;
 class QModelIndex;
-struct MainWindowOptions;
 struct NotificationButton;
 
 Q_DECLARE_METATYPE(QPersistentModelIndex)
@@ -71,7 +71,7 @@ struct MainWindowOptions {
     bool activatePastes() const { return itemActivationCommands & ActivatePastes; }
 
     bool confirmExit = true;
-    bool viMode = false;
+    NavigationStyle navigationStyle = NavigationStyle::Default;
     bool trayCommands = false;
     bool trayCurrentTab = false;
     QString trayTabName;
@@ -486,7 +486,7 @@ private:
     void onItemCommandActionTriggered(CommandAction *commandAction, const QString &triggeredShortcut);
     void onClipboardCommandActionTriggered(CommandAction *commandAction, const QString &triggeredShortcut);
 
-    void onTabWidgetDropItems(const QString &tabName, const QMimeData *data);
+    void onTabWidgetDropItems(const QString &tabName, const QMimeData *data, bool *accepted);
 
     void showContextMenuAt(QPoint position);
 
@@ -498,6 +498,7 @@ private:
     void moveToBottom();
 
     void onBrowserCreated(ClipboardBrowser *browser);
+    void onBrowserLoaded(ClipboardBrowser *browser);
     void onBrowserDestroyed(ClipboardBrowserPlaceholder *placeholder);
 
     void onItemSelectionChanged(const ClipboardBrowser *browser);

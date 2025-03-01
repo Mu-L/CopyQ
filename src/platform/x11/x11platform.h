@@ -41,8 +41,6 @@ public:
 
     QApplication *createServerApplication(int &argc, char **argv) override;
 
-    QGuiApplication *createMonitorApplication(int &argc, char **argv) override;
-
     QGuiApplication *createClipboardProviderApplication(int &argc, char **argv) override;
 
     QCoreApplication *createClientApplication(int &argc, char **argv) override;
@@ -61,9 +59,5 @@ public:
 
     QString themePrefix() override { return QString(); }
 };
-
-#ifdef COPYQ_WITH_X11
-void sendDummyX11Event();
-#endif
 
 #endif // X11PLATFORM_H

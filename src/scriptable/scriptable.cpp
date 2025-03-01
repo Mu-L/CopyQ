@@ -4,6 +4,7 @@
 
 #include "app/clipboardmonitor.h"
 #include "common/action.h"
+#include "common/appconfig.h"
 #include "common/command.h"
 #include "common/commandstatus.h"
 #include "common/commandstore.h"
@@ -212,15 +213,6 @@ QString parseCommandLineArgument(const QString &arg)
     return result;
 }
 
-bool matchData(const QRegularExpression &re, const QVariantMap &data, const QString &format)
-{
-    if ( re.pattern().isEmpty() )
-        return true;
-
-    const QString text = getTextData(data, format);
-    return text.contains(re);
-}
-
 bool isInternalDataFormat(const QString &format)
 {
     return format == mimeWindowTitle
@@ -231,7 +223,8 @@ bool isInternalDataFormat(const QString &format)
         || format == mimeSelectedItems
         || format == mimeCurrentItem
         || format == mimeShortcut
-        || format == mimeOutputTab;
+        || format == mimeOutputTab
+        || format == mimeSecret;
 }
 
 QVariantMap copyWithoutInternalData(const QVariantMap &data) {
@@ -869,7 +862,7 @@ void Scriptable::exit()
 {
     m_skipArguments = 0;
     QByteArray message = fromString( tr("Terminating server.\n") );
-    print(message);
+    printError(message);
     m_proxy->exit();
 }
 
@@ -1025,8 +1018,7 @@ QJSValue Scriptable::removeTab()
     m_skipArguments = 1;
 
     const QString &name = arg(0);
-    const QString error = m_proxy->removeTab(name);
-    if ( !error.isEmpty() )
+    if ( const QString error = m_proxy->removeTab(name); !error.isEmpty() )
         return throwError(error);
     return QJSValue();
 }
@@ -1036,8 +1028,7 @@ QJSValue Scriptable::renameTab()
     m_skipArguments = 2;
     const QString &name = arg(0);
     const QString &newName = arg(1);
-    const QString error = m_proxy->renameTab(newName, name);
-    if ( !error.isEmpty() )
+    if ( const QString error = m_proxy->renameTab(newName, name); !error.isEmpty() )
         return throwError(error);
     return QJSValue();
 }
@@ -1117,8 +1108,7 @@ QJSValue Scriptable::remove()
     if ( rows.empty() )
         rows.append(0);
 
-    const auto error = m_proxy->browserRemoveRows(m_tabName, rows);
-    if ( !error.isEmpty() )
+    if ( const auto error = m_proxy->browserRemoveRows(m_tabName, rows); !error.isEmpty() )
         return throwError(error);
     return QJSValue();
 }
@@ -1140,35 +1130,51 @@ void Scriptable::edit()
 {
     m_skipArguments = -1;
 
-    QJSValue value;
-    QString text;
+    QByteArray content;
     int row = -1;
+    int editRow = -1;
+    bool changeClipboard = true;
 
     const int len = argumentCount();
     for ( int i = 0; i < len; ++i ) {
-        value = argument(i);
+        const QJSValue value = argument(i);
         if (i > 0)
-            text.append(m_inputSeparator);
+            content.append(m_inputSeparator.toUtf8());
         if ( toInt(value, &row) ) {
+            editRow = (i == 0) ? row : -1;
+            changeClipboard = i == 0 && row < 0;
             const QByteArray bytes = row >= 0 ? m_proxy->browserItemData(m_tabName, row, mimeText)
                                               : getClipboardData(mimeText);
-            text.append( getTextData(bytes) );
+            content.append(bytes);
         } else {
-            text.append( toString(value) );
+            content.append( toByteArray(value) );
         }
     }
 
-    bool changeClipboard = row < 0;
+    editContent(editRow, mimeText, content, changeClipboard);
+}
 
-    if ( !m_proxy->browserOpenEditor(m_tabName, fromString(text), changeClipboard) ) {
-        m_proxy->showBrowser(m_tabName);
-        if (len == 1 && row >= 0) {
-            m_proxy->browserSetCurrent(m_tabName, row);
-            m_proxy->browserEditRow(m_tabName, row);
-        } else {
-            m_proxy->browserEditNew(m_tabName, text, changeClipboard);
-        }
-    }
+QJSValue Scriptable::editItem()
+{
+    m_skipArguments = 3;
+
+    int editRow;
+    if ( !toInt(argument(0), &editRow) )
+        return throwError(argumentError());
+
+    const auto format = arg(1, mimeText);
+    const bool changeClipboard = editRow < 0;
+
+    QByteArray content;
+    if ( argumentCount() > 2 )
+        content = makeByteArray(argument(2));
+    else if (editRow >= 0)
+        content = m_proxy->browserItemData(m_tabName, editRow, format);
+    else
+        content = getClipboardData(format);
+
+    editContent(editRow, format, content, changeClipboard);
+    return {};
 }
 
 QJSValue Scriptable::read()
@@ -1266,51 +1272,82 @@ void Scriptable::popup()
 {
     m_skipArguments = 3;
 
-    const QString title = arg(0);
-    const QString message = arg(1);
-    int msec;
-    if ( !toInt(argument(2), &msec) )
-        msec = 8000;
-    m_proxy->showMessage(title, message, QString(), msec);
+    MessageData messageData;
+    messageData.urgency = Notification::Urgency::Normal;
+    messageData.title = arg(0);
+    messageData.message = arg(1);
+    if ( !toInt(argument(2), &messageData.timeoutMs) )
+        messageData.timeoutMs = 8000;
+    m_proxy->showMessage(messageData);
 }
 
 QJSValue Scriptable::notification()
 {
     m_skipArguments = -1;
 
-    QString title;
-    QString message;
-    int msec = -1;
-    QString icon;
-    QString notificationId;
-    NotificationButtonList buttons;
+    MessageData messageData;
+    messageData.urgency = Notification::Urgency::Normal;
 
     for ( int i = 0; i < argumentCount(); ++i ) {
         const auto name = arg(i++);
         if ( name == QLatin1String(".title") ) {
-            title = arg(i);
+            messageData.title = arg(i);
         } else if ( name == QLatin1String(".message") ) {
-            message = arg(i);
+            messageData.message = arg(i);
         } else if ( name == QLatin1String(".time") ) {
-            if ( !toInt(argument(i), &msec) ) {
+            if ( !toInt(argument(i), &messageData.timeoutMs) ) {
                 return throwError("Expected number after .time argument");
             }
         } else if ( name == QLatin1String(".id") ) {
-            notificationId = arg(i);
+            messageData.notificationId = arg(i);
         } else if ( name == QLatin1String(".icon") ) {
-            icon = arg(i);
+            messageData.icon = arg(i);
         } else if ( name == QLatin1String(".button") ) {
             NotificationButton button;
             button.name = arg(i);
             button.script = arg(++i);
             button.data = makeByteArray( argument(++i) );
-            buttons.items.append(button);
+            messageData.buttons.items.append(button);
+        } else if ( name == QLatin1String(".urgency") ) {
+            const QString urgencyName = arg(i).toLower();
+            if (urgencyName == QLatin1String("low")) {
+                messageData.urgency = Notification::Urgency::Low;
+            } else if (urgencyName == QLatin1String("normal")) {
+                messageData.urgency = Notification::Urgency::Normal;
+            } else if (urgencyName == QLatin1String("high")) {
+                messageData.urgency = Notification::Urgency::High;
+            } else if (urgencyName == QLatin1String("critical")) {
+                messageData.urgency = Notification::Urgency::Critical;
+            } else {
+                return throwError(
+                    QStringLiteral("Unknown value for '.urgency' notification field: %1")
+                    .arg(urgencyName)
+                );
+            }
+        } else if ( name == QLatin1String(".persistent") ) {
+            const QJSValue persistent = argument(i);
+            if (persistent.isBool()) {
+                messageData.persistency = persistent.toBool()
+                    ? Notification::Persistency::Persistent
+                    : Notification::Persistency::NonPersistent;
+            } else {
+                const QString name = toString(persistent);
+                if (name == QLatin1String("true") || name == QLatin1String("1"))
+                    messageData.persistency = Notification::Persistency::Persistent;
+                else if (name == QLatin1String("false") || name == QLatin1String("0"))
+                    messageData.persistency = Notification::Persistency::NonPersistent;
+                else
+                    return throwError(
+                        QStringLiteral("Unknown value for '.persistent' notification field: %1")
+                        .arg(name)
+                    );
+            }
         } else {
             return throwError("Unknown argument: " + name);
         }
     }
 
-    m_proxy->showMessage(title, message, icon, msec, notificationId, buttons);
+    m_proxy->showMessage(messageData);
     return QJSValue();
 }
 
@@ -1636,7 +1673,9 @@ QJSValue Scriptable::setData()
     if ( !toItemData(argument(1), mime, &m_data) )
         return false;
 
-    m_proxy->setSelectedItemsData(mime, m_data.value(mime));
+    if (!m_modifyDisplayDataOnly)
+        m_proxy->setSelectedItemsData(mime, m_data.value(mime));
+
     return true;
 }
 
@@ -1646,7 +1685,10 @@ QJSValue Scriptable::removeData()
 
     const QString mime = arg(0);
     m_data.remove(mime);
-    m_proxy->setSelectedItemsData(mime, QVariant());
+
+    if (!m_modifyDisplayDataOnly)
+        m_proxy->setSelectedItemsData(mime, QVariant());
+
     return true;
 }
 
@@ -1767,7 +1809,7 @@ QJSValue Scriptable::selectItems()
 QJSValue Scriptable::selectedTab()
 {
     m_skipArguments = 0;
-    return m_data.value(mimeCurrentTab).toString();
+    return m_proxy->selectedTab();
 }
 
 QJSValue Scriptable::selectedItems()
@@ -1900,9 +1942,9 @@ QJSValue Scriptable::execute()
 {
     m_skipArguments = -1;
 
-    m_executeStdoutData.clear();
-    m_executeStdoutLastLine.clear();
-    m_executeStdoutCallback = QJSValue();
+    QByteArray executeStdoutData;
+    QString executeStdoutLastLine;
+    QJSValue executeStdoutCallback;
 
     // Pass all arguments until null to command. The rest will be sent to stdin.
     QStringList args;
@@ -1913,7 +1955,7 @@ QJSValue Scriptable::execute()
             break;
 
         if ( arg.isCallable() )
-            m_executeStdoutCallback = arg;
+            executeStdoutCallback = arg;
         else
             args.append( toString(arg) );
     }
@@ -1922,7 +1964,7 @@ QJSValue Scriptable::execute()
     for ( ++i ; i < argumentCount(); ++i ) {
         const auto arg = argument(i);
         if ( arg.isCallable() )
-            m_executeStdoutCallback = arg;
+            executeStdoutCallback = arg;
         else
             action.setInput( action.input() + makeByteArray(arg) );
     }
@@ -1931,24 +1973,35 @@ QJSValue Scriptable::execute()
     action.setReadOutput(true);
 
     connect( &action, &Action::actionOutput,
-             this, &Scriptable::onExecuteOutput );
+             this, [&](const QByteArray &output) {
+                 executeStdoutData.append(output);
+             });
+    if ( executeStdoutCallback.isCallable() ) {
+        connect( &action, &Action::actionOutput,
+                 this, [&](const QByteArray &output) {
+                     executeStdoutLastLine.append( getTextData(output) );
+                     auto lines = executeStdoutLastLine.split('\n');
+                     executeStdoutLastLine = lines.takeLast();
+                     if ( !lines.isEmpty() ) {
+                         const auto arg = toScriptValue(lines, m_engine);
+                         call( "executeStdoutCallback", &executeStdoutCallback, {arg} );
+                     }
+                 });
+    }
 
-    if ( !runAction(&action) || action.actionFailed() )
-        return QJSValue();
+    if ( !runAction(&action) || action.actionFailed() ) {
+        return throwError( QStringLiteral("Failed to run command") );
+    }
 
-    if ( m_executeStdoutCallback.isCallable() ) {
-        const auto arg = toScriptValue(m_executeStdoutLastLine, m_engine);
-        call( "executeStdoutCallback", &m_executeStdoutCallback, {arg} );
+    if ( executeStdoutCallback.isCallable() ) {
+        const auto arg = toScriptValue(executeStdoutLastLine, m_engine);
+        call( "executeStdoutCallback", &executeStdoutCallback, {arg} );
     }
 
     QJSValue actionResult = m_engine->newObject();
-    actionResult.setProperty( QStringLiteral("stdout"), newByteArray(m_executeStdoutData) );
+    actionResult.setProperty( QStringLiteral("stdout"), newByteArray(executeStdoutData) );
     actionResult.setProperty( QStringLiteral("stderr"), getTextData(action.errorOutput()) );
     actionResult.setProperty( QStringLiteral("exit_code"), action.exitCode() );
-
-    m_executeStdoutData.clear();
-    m_executeStdoutLastLine.clear();
-    m_executeStdoutCallback = QJSValue();
 
     return actionResult;
 }
@@ -2332,8 +2385,7 @@ QJSValue Scriptable::loadTheme()
     m_skipArguments = 1;
 
     const QString path = getAbsoluteFilePath(arg(0));
-    const QString error = m_proxy->loadTheme(path);
-    if ( !error.isEmpty() )
+    if ( const QString error = m_proxy->loadTheme(path); !error.isEmpty() )
         return throwError(error);
 
     return QJSValue();
@@ -2365,6 +2417,13 @@ void Scriptable::onHiddenClipboardChanged()
 
 void Scriptable::onClipboardUnchanged()
 {
+}
+
+void Scriptable::onSecretClipboardChanged()
+{
+    // Drop secret data by default
+    m_data = {{mimeSecret, m_data.value(mimeSecret)}};
+    eval("updateClipboardData()");
 }
 
 void Scriptable::synchronizeToSelection()
@@ -2465,6 +2524,8 @@ QJSValue Scriptable::runAutomaticCommands()
 
 void Scriptable::runDisplayCommands()
 {
+    m_modifyDisplayDataOnly = true;
+
     QEventLoop loop;
     connect(this, &Scriptable::finished, &loop, [&]() {
         if (m_abort == Abort::AllEvaluations)
@@ -2504,6 +2565,8 @@ void Scriptable::runDisplayCommands()
 
     if (m_abort == Abort::None)
         loop.exec();
+
+    m_modifyDisplayDataOnly = false;
 }
 
 void Scriptable::runMenuCommandFilters()
@@ -2590,12 +2653,23 @@ void Scriptable::monitorClipboard()
     connect(this, &Scriptable::finished, &loop, &QEventLoop::quit);
     connect( &monitor, &ClipboardMonitor::clipboardChanged,
              this, &Scriptable::onMonitorClipboardChanged );
+    connect( &monitor, &ClipboardMonitor::hiddenClipboardChanged,
+             this, &Scriptable::onMonitorHiddenClipboardChanged );
+    connect( &monitor, &ClipboardMonitor::ownClipboardChanged,
+             this, &Scriptable::onMonitorOwnClipboardChanged );
+    connect( &monitor, &ClipboardMonitor::secretClipboardChanged,
+             this, &Scriptable::onMonitorSecretClipboardChanged );
     connect( &monitor, &ClipboardMonitor::clipboardUnchanged,
              this, &Scriptable::onMonitorClipboardUnchanged );
     connect( &monitor, &ClipboardMonitor::synchronizeSelection,
              this, &Scriptable::onSynchronizeSelection );
     connect( &monitor, &ClipboardMonitor::fetchCurrentClipboardOwner,
              this, &Scriptable::onFetchCurrentClipboardOwner );
+    connect( &monitor, &ClipboardMonitor::saveData,
+             m_proxy, [this](const QVariantMap &data) {
+                 m_data = data;
+                 eval("saveData()");
+             } );
 
     monitor.startMonitoring();
     setClipboardMonitorRunning(true);
@@ -2664,43 +2738,33 @@ void Scriptable::collectScriptOverrides()
     m_proxy->setScriptOverrides(overrides);
 }
 
-void Scriptable::onExecuteOutput(const QByteArray &output)
+void Scriptable::onMonitorClipboardChanged(const QVariantMap &data)
 {
-    m_executeStdoutData.append(output);
-
-    if ( m_executeStdoutCallback.isCallable() ) {
-        m_executeStdoutLastLine.append( getTextData(output) );
-        auto lines = m_executeStdoutLastLine.split('\n');
-        m_executeStdoutLastLine = lines.takeLast();
-        if ( !lines.isEmpty() ) {
-            const auto arg = toScriptValue(lines, m_engine);
-            call( "executeStdoutCallback", &m_executeStdoutCallback, {arg} );
-        }
-    }
+    COPYQ_LOG("onClipboardChanged");
+    m_proxy->runInternalAction(data, QStringLiteral("copyq onClipboardChanged"));
 }
 
-void Scriptable::onMonitorClipboardChanged(const QVariantMap &data, ClipboardOwnership ownership)
+void Scriptable::onMonitorSecretClipboardChanged(const QVariantMap &data)
 {
-    COPYQ_LOG( QStringLiteral("onMonitorClipboardChanged: %1 %2, owner is \"%3\"")
-               .arg(
-                   QString::fromLatin1(
-                       ownership == ClipboardOwnership::Own ? "own"
-                       : ownership == ClipboardOwnership::Foreign ? "foreign"
-                       : "hidden"),
-                   QString::fromLatin1(isClipboardData(data) ? "clipboard" : "selection"),
-                   getTextData(data, mimeOwner)
-               ) );
+    COPYQ_LOG("onSecretClipboardChanged");
+    m_proxy->runInternalAction(data, QStringLiteral("copyq onSecretClipboardChanged"));
+}
 
-    const QString command =
-        ownership == ClipboardOwnership::Own ? "copyq onOwnClipboardChanged"
-      : ownership == ClipboardOwnership::Hidden ? "copyq onHiddenClipboardChanged"
-      : "copyq onClipboardChanged";
+void Scriptable::onMonitorHiddenClipboardChanged(const QVariantMap &data)
+{
+    COPYQ_LOG("onHiddenClipboardChanged");
+    m_proxy->runInternalAction(data, QStringLiteral("copyq onHiddenClipboardChanged"));
+}
 
-    m_proxy->runInternalAction(data, command);
+void Scriptable::onMonitorOwnClipboardChanged(const QVariantMap &data)
+{
+    COPYQ_LOG("onOwnClipboardChanged");
+    m_proxy->runInternalAction(data, QStringLiteral("copyq onOwnClipboardChanged"));
 }
 
 void Scriptable::onMonitorClipboardUnchanged(const QVariantMap &data)
 {
+    COPYQ_LOG("onOwnClipboardUnchanged");
     m_proxy->runInternalAction(data, "copyq onClipboardUnchanged");
 }
 
@@ -2878,9 +2942,15 @@ void Scriptable::showExceptionMessage(const QString &message)
         : tr("Exception in %1").arg( quoteString(m_actionName) );
 
     QtPrivate::QHashCombine hash;
+    MessageData messageData;
     const auto id = hash(hash(0, title), message);
-    const auto notificationId = QString::number(id);
-    m_proxy->showMessage(title, message, QString(QChar(IconCircleExclamation)), 8000, notificationId);
+    messageData.notificationId = QString::number(id);
+    messageData.message = message;
+    messageData.title = title;
+    messageData.icon = QString(QChar(IconCircleExclamation));
+    messageData.timeoutMs = 8000;
+    messageData.urgency = Notification::Urgency::High;
+    m_proxy->showMessage(messageData);
 }
 
 QVector<int> Scriptable::getRows() const
@@ -3050,6 +3120,21 @@ void Scriptable::nextToClipboard(int where)
 #endif
 }
 
+void Scriptable::editContent(
+        int editRow, const QString &format, const QByteArray &content, bool changeClipboard)
+{
+    if ( m_proxy->browserOpenEditor(m_tabName, editRow, format, content, changeClipboard) )
+        return;
+
+    m_proxy->showBrowser(m_tabName);
+    if (editRow >= 0) {
+        m_proxy->browserSetCurrent(m_tabName, editRow);
+        m_proxy->browserEditRow(m_tabName, editRow, format);
+    } else {
+        m_proxy->browserEditNew(m_tabName, format, content, changeClipboard);
+    }
+}
+
 QJSValue Scriptable::screenshot(bool select)
 {
     m_skipArguments = 2;
@@ -3184,12 +3269,13 @@ bool Scriptable::runCommands(CommandType::CommandType type)
         if ( command.outputTab.isEmpty() )
             command.outputTab = tabName;
 
-        if ( !canExecuteCommand(command) )
+        QStringList arguments;
+        if ( !canExecuteCommand(command, &arguments) )
             continue;
 
         if ( canContinue() && !command.cmd.isEmpty() ) {
             Action action;
-            action.setCommand( command.cmd, QStringList(getTextData(m_data)) );
+            action.setCommand(command.cmd, arguments);
             action.setInputWithFormat(m_data, command.input);
             action.setName(command.name);
             action.setData(m_data);
@@ -3228,7 +3314,7 @@ bool Scriptable::runCommands(CommandType::CommandType type)
     return true;
 }
 
-bool Scriptable::canExecuteCommand(const Command &command)
+bool Scriptable::canExecuteCommand(const Command &command, QStringList *arguments)
 {
     // Verify that data for given MIME is available.
     if ( !command.input.isEmpty() ) {
@@ -3241,12 +3327,21 @@ bool Scriptable::canExecuteCommand(const Command &command)
         }
     }
 
+    const QString text = getTextData(m_data);
+    arguments->append(text);
+
     // Verify that and text matches given regexp.
-    if ( !matchData(command.re, m_data, mimeText) )
-        return false;
+    if ( !command.re.pattern().isEmpty() ) {
+        QRegularExpressionMatchIterator it = command.re.globalMatch(text);
+        if ( !it.isValid() || !it.hasNext() )
+            return false;
+
+        while (it.hasNext())
+            arguments->append( it.next().capturedTexts().mid(1) );
+    }
 
     // Verify that window title matches given regexp.
-    if ( !matchData(command.wndre, m_data, mimeWindowTitle) )
+    if ( !command.wndre.pattern().isEmpty() && !getTextData(m_data, mimeWindowTitle).contains(command.wndre) )
         return false;
 
     return canExecuteCommandFilter(command.matchCmd);
@@ -3322,8 +3417,7 @@ void Scriptable::insert(int row, int argumentsBegin, int argumentsEnd)
     m_skipArguments = argumentsEnd;
 
     const VariantMapList items{getItemList(argumentsBegin, argumentsEnd, argumentsArray())};
-    const auto error = m_proxy->browserInsert(m_tabName, row, items);
-    if ( !error.isEmpty() )
+    if ( const auto error = m_proxy->browserInsert(m_tabName, row, items); !error.isEmpty() )
         throwError(error);
 }
 
@@ -3416,8 +3510,9 @@ bool Scriptable::canSynchronizeSelection(ClipboardMode targetMode)
     // Avoid changing clipboard after a text is selected just before it's copied
     // with a keyboard shortcut.
     SleepTimer t(5000);
-    while ( QGuiApplication::queryKeyboardModifiers() != Qt::NoModifier ) {
-        if ( !t.sleep() && !canContinue() ) {
+    const auto waitForReleased = Qt::ShiftModifier | Qt::ControlModifier | Qt::AltModifier;
+    while ( QGuiApplication::queryKeyboardModifiers() & waitForReleased ) {
+        if ( !t.sleep() || !canContinue() ) {
             COPYQ_LOG("Sync: Cancelled - keyboard modifiers still being held");
             return false;
         }
@@ -3438,8 +3533,9 @@ bool Scriptable::canSynchronizeSelection(ClipboardMode targetMode)
         const QString owner = sourceData.value(mimeOwner).toString();
         if ( owner.isEmpty() && !source.isEmpty() ) {
             const auto sourceTextHash = m_data.value(COPYQ_MIME_PREFIX "source-text-hash").toByteArray().toUInt();
-            if (sourceTextHash != qHash(source)) {
-                COPYQ_LOG(QStringLiteral("Sync: Cancelled - source text changed"));
+            const uint newSourceTextHash = qHash(source);
+            if (sourceTextHash != newSourceTextHash) {
+                COPYQ_LOG("Sync: Cancelled - source text changed");
                 return false;
             }
         }
@@ -3454,8 +3550,9 @@ bool Scriptable::canSynchronizeSelection(ClipboardMode targetMode)
         const QString owner = targetData.value(mimeOwner).toString();
         if ( owner.isEmpty() && !target.isEmpty() ) {
             const auto targetTextHash = m_data.value(COPYQ_MIME_PREFIX "target-text-hash").toByteArray().toUInt();
-            if (targetTextHash != qHash(target)) {
-                COPYQ_LOG(QStringLiteral("Sync: Cancelled - target text changed"));
+            const uint newTargetTextHash = qHash(target);
+            if (targetTextHash != newTargetTextHash) {
+                COPYQ_LOG("Sync: Cancelled - target text changed");
                 return false;
             }
         }
@@ -3463,15 +3560,15 @@ bool Scriptable::canSynchronizeSelection(ClipboardMode targetMode)
         // Stop if the clipboard and selection text is already synchronized
         // or user selected text and copied it to clipboard.
         if (!sourceData.isEmpty() && source == target) {
-            COPYQ_LOG(QStringLiteral("Sync: Cancelled - target text is already same as source"));
+            COPYQ_LOG("Sync: Cancelled - target text is already same as source");
             return false;
         }
     } else {
-        COPYQ_LOG(QStringLiteral("Sync: Failed to fetch target data"));
+        COPYQ_LOG("Sync: Failed to fetch target data");
     }
 
     if (m_abort != Abort::None) {
-        COPYQ_LOG(QStringLiteral("Sync: Aborting"));
+        COPYQ_LOG("Sync: Aborting");
         return false;
     }
 

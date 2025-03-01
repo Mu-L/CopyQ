@@ -20,6 +20,7 @@ public:
     QVariantMap data(ClipboardMode mode, const QStringList &formats) const override;
 
     void setData(ClipboardMode mode, const QVariantMap &dataMap) override;
+    void setRawData(ClipboardMode mode, QMimeData *mimeData) override;
 
     const QMimeData *mimeData(ClipboardMode mode) const override;
 
@@ -33,6 +34,7 @@ protected:
     virtual const QMimeData *rawMimeData(ClipboardMode mode) const;
     virtual void onChanged(int mode);
     void onClipboardChanged(QClipboard::Mode mode);
+    virtual const long int *clipboardSequenceNumber(ClipboardMode) const { return nullptr; }
 };
 
 #endif // DUMMYCLIPBOARD_H

@@ -2,16 +2,10 @@
 # Creates macOS bundle.
 set -xeuo pipefail
 
+cpack
+
 app_bundle_path="CopyQ.app"
-
 executable="${PWD}/${app_bundle_path}/Contents/MacOS/CopyQ"
-plugins=("$app_bundle_path/Contents/PlugIns/copyq/"*.so)
-qt_bin="$(brew --prefix qt@5)/bin"
-
-rm -rf "$app_bundle_path/Contents/PlugIns/"{platforminputcontexts,printsupport,qmltooling}
-
-"$qt_bin/macdeployqt" "$app_bundle_path" -dmg -verbose=2 -always-overwrite -no-plugins \
-    "${plugins[@]/#/-executable=}"
 
 ls -Rl "$app_bundle_path"
 
@@ -28,7 +22,11 @@ test "$("$executable" info has-global-shortcuts)" -eq "1"
 
 # Uninstall local Qt to make sure we only use libraries from the bundle
 brew remove --ignore-dependencies --force \
-    qt@5 copyq/kde/kf5-knotifications freetype
+    qt@6 copyq/kde/kf6-knotifications copyq/kde/kf6-kstatusnotifieritem freetype
+
+# Disable animations for tests
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
+defaults write -g NSWindowResizeTime -float 0.001
 
 (
     export LD_LIBRARY_PATH=""
@@ -44,4 +42,6 @@ brew remove --ignore-dependencies --force \
 otool -L "$executable"
 otool -L "$app_bundle_path/Contents/PlugIns/"*/*.dylib
 otool -L "$app_bundle_path/Contents/PlugIns/copyq/"*
-otool -L "$app_bundle_path/Contents/Frameworks/"Qt*.framework/Versions/5/Qt*
+otool -L "$app_bundle_path/Contents/Frameworks/"Qt*.framework/Versions/*/Qt*
+
+mv copyq-*.dmg CopyQ.dmg

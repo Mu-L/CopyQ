@@ -247,13 +247,17 @@ QApplication *X11Platform::createServerApplication(int &argc, char **argv)
     return new ApplicationExceptionHandler<QApplication>(argc, argv);
 }
 
-QGuiApplication *X11Platform::createMonitorApplication(int &argc, char **argv)
-{
-    return new ApplicationExceptionHandler<QGuiApplication>(argc, argv);
-}
-
 QGuiApplication *X11Platform::createClipboardProviderApplication(int &argc, char **argv)
 {
+    // WORKAROUND: On GNOME Wayland session, run clipboard monitor/provider
+    // processes in XWayland mode, because GNOME does not support the
+    // wlr-data-control protocol required for clipboard access.
+    if ( qEnvironmentVariableIsEmpty("QT_QPA_PLATFORM")
+         && qgetenv("XAUTHORITY").contains("mutter-Xwayland") )
+    {
+        qputenv("QT_QPA_PLATFORM", "xcb");
+    }
+
     return new ApplicationExceptionHandler<QGuiApplication>(argc, argv);
 }
 
@@ -319,21 +323,3 @@ QString X11Platform::translationPrefix()
 {
     return QString();
 }
-
-#ifdef COPYQ_WITH_X11
-void sendDummyX11Event()
-{
-    if (!X11Info::isPlatformX11())
-        return;
-
-    auto display = X11Info::display();
-    if (!display)
-        return;
-
-    auto black = BlackPixel(display, 0);
-    Window window = XCreateSimpleWindow(
-        display, RootWindow(display, 0), -100000, -100000, 1, 1, 0, black, black);
-    XDestroyWindow(display, window);
-    XFlush(display);
-}
-#endif

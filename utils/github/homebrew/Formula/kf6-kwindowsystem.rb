@@ -1,8 +1,8 @@
-class Kf5Kwindowsystem < Formula
+class Kf6Kwindowsystem < Formula
   desc "Access to the windowing system"
   homepage "https://www.kde.org"
-  url "https://download.kde.org/stable/frameworks/5.109/kwindowsystem-5.109.0.tar.xz"
-  sha256 "088075c9ff367b5b53b6ecdd34dcf8a47a4cf47458ef02fd9d8df3266679c1a2"
+  url "https://download.kde.org/stable/frameworks/6.7/kwindowsystem-6.7.0.tar.xz"
+  sha256 "62c0f0b4a9507939d84aeeda55bbd4300b88c04e37953e5189b139003310a8f4"
   head "https://invent.kde.org/frameworks/kwindowsystem.git"
 
   depends_on "cmake" => [:build, :test]
@@ -10,15 +10,15 @@ class Kf5Kwindowsystem < Formula
 
   depends_on "copyq/kde/extra-cmake-modules" => [:build, :test]
 
-  depends_on "qt@5"
+  depends_on "qt"
 
   def install
     args = std_cmake_args
     args << "-DBUILD_TESTING=OFF"
     args << "-DBUILD_QCH=OFF"
-    args << "-DKDE_INSTALL_QMLDIR=lib/qt5/qml"
-    args << "-DKDE_INSTALL_PLUGINDIR=lib/qt5/plugins"
-    args << "-DKDE_INSTALL_QTPLUGINDIR=lib/qt5/plugins"
+    args << "-DKDE_INSTALL_QMLDIR=lib/qt6/qml"
+    args << "-DKDE_INSTALL_PLUGINDIR=lib/qt6/plugins"
+    args << "-DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins"
 
     mkdir "build" do
       system "cmake", "-G", "Ninja", "..", *args
@@ -29,7 +29,7 @@ class Kf5Kwindowsystem < Formula
   end
 
   test do
-    (testpath/"CMakeLists.txt").write("find_package(KF5WindowSystem REQUIRED)")
+    (testpath/"CMakeLists.txt").write("find_package(KF6WindowSystem REQUIRED)")
     system "cmake", ".", "-Wno-dev"
   end
 end

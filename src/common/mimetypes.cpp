@@ -4,6 +4,7 @@
 
 #include <QLatin1String>
 
+const QLatin1String mimePrivatePrefix(COPYQ_MIME_PRIVATE_PREFIX);
 const QLatin1String mimeText("text/plain");
 const QLatin1String mimeTextUtf8("text/plain;charset=utf-8");
 const QLatin1String mimeHtml("text/html");
@@ -22,3 +23,4 @@ const QLatin1String mimeShortcut(COPYQ_MIME_PREFIX "shortcut");
 const QLatin1String mimeColor(COPYQ_MIME_PREFIX "color");
 const QLatin1String mimeOutputTab(COPYQ_MIME_PREFIX "output-tab");
 const QLatin1String mimeDisplayItemInMenu(COPYQ_MIME_PREFIX "display-item-in-menu");
+const QLatin1String mimeSecret(COPYQ_MIME_PREFIX "secret");

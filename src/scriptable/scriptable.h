@@ -52,6 +52,7 @@ class Scriptable final : public QObject
     Q_PROPERTY(QJSValue mimeColor READ getMimeColor CONSTANT)
     Q_PROPERTY(QJSValue mimeOutputTab READ getMimeOutputTab CONSTANT)
     Q_PROPERTY(QJSValue mimeDisplayItemInMenu READ getMimeDisplayItemInMenu CONSTANT)
+    Q_PROPERTY(QJSValue mimeSecret READ getMimeSecret CONSTANT)
 
     Q_PROPERTY(QJSValue plugins READ getPlugins CONSTANT)
 
@@ -138,6 +139,7 @@ public:
     QJSValue getMimeColor() const { return mimeColor; }
     QJSValue getMimeOutputTab() const { return mimeOutputTab; }
     QJSValue getMimeDisplayItemInMenu() const { return mimeDisplayItemInMenu; }
+    QJSValue getMimeSecret() const { return mimeSecret; }
 
     QJSValue getPlugins();
 
@@ -214,6 +216,7 @@ public slots:
     void insert();
     QJSValue remove();
     void edit();
+    QJSValue editItem();
     QJSValue move();
 
     QJSValue read();
@@ -358,6 +361,7 @@ public slots:
     void onOwnClipboardChanged();
     void onHiddenClipboardChanged();
     void onClipboardUnchanged();
+    void onSecretClipboardChanged();
 
     void onStart() {}
     void onExit() {}
@@ -402,8 +406,10 @@ signals:
     void receiveData();
 
 private:
-    void onExecuteOutput(const QByteArray &output);
-    void onMonitorClipboardChanged(const QVariantMap &data, ClipboardOwnership ownership);
+    void onMonitorClipboardChanged(const QVariantMap &data);
+    void onMonitorSecretClipboardChanged(const QVariantMap &data);
+    void onMonitorHiddenClipboardChanged(const QVariantMap &data);
+    void onMonitorOwnClipboardChanged(const QVariantMap &data);
     void onMonitorClipboardUnchanged(const QVariantMap &data);
     void onSynchronizeSelection(ClipboardMode sourceMode, uint sourceTextHash, uint targetTextHash);
     void onFetchCurrentClipboardOwner(QString *title);
@@ -427,12 +433,13 @@ private:
     QJSValue copy(ClipboardMode mode);
     QJSValue changeItem(bool create);
     void nextToClipboard(int where);
+    void editContent(int editRow, const QString &format, const QByteArray &content, bool changeClipboard);
     QJSValue screenshot(bool select);
     QByteArray serialize(const QJSValue &value);
     QJSValue eval(const QString &script);
     bool runAction(Action *action);
     bool runCommands(CommandType::CommandType type);
-    bool canExecuteCommand(const Command &command);
+    bool canExecuteCommand(const Command &command, QStringList *arguments);
     bool canExecuteCommandFilter(const QString &matchCommand);
     bool verifyClipboardAccess();
     void provideClipboard(ClipboardMode mode);
@@ -481,12 +488,7 @@ private:
     Abort m_abort = Abort::None;
     int m_skipArguments = 0;
 
-    // FIXME: Parameters for execute() shouldn't be global.
-    QByteArray m_executeStdoutData;
-    QString m_executeStdoutLastLine;
-    QJSValue m_executeStdoutCallback;
-
-    bool m_displayFunctionsLock = false;
+    bool m_modifyDisplayDataOnly = false;
 
     QJSValue m_plugins;
 
